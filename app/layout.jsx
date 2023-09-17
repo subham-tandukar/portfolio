@@ -5,21 +5,22 @@ import ActiveSectionContextProvider from "@/context/active-section-context";
 import { ThemeContextProvider } from "@/context/theme-context";
 import Theme from "@/component/theme";
 import { Courgette, Comic_Neue } from "next/font/google";
+import { metadata } from "./metatag";
+
 const courgette = Courgette({ weight: "400", subsets: ["latin"] });
 const comicNeue = Comic_Neue({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
 });
 
-const metadata = {
-  title: "Subham | Personal Portfolio",
-  description:
-    "Subham is a frontend web developer with more than 1 year of experience",
-};
-
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        {/* Other meta tags, links, or scripts */}
+      </head>
       <style jsx global>{`
         :root {
           --comicNeue-font: ${comicNeue.style.fontFamily};
