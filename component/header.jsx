@@ -7,7 +7,6 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 import "@/css/header.css";
 import Image from "next/image";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
-import $ from "jquery";
 
 export default function Header() {
   const { activeSection, setActiveSection } = useActiveSectionContext();
@@ -40,33 +39,11 @@ export default function Header() {
     }
   };
 
-  $.fn.scrollClickCenter = function (elem, speed) {
-    var active = $(this).find(elem);
-
-    if (active.length > 0) {
-      var container = $(this);
-      var activeWidth = active.width() / 2;
-      var pos = active.position().left + activeWidth;
-      var currentScroll = container.scrollLeft();
-      var containerWidth = container.width();
-      pos = pos + currentScroll - containerWidth / 2;
-
-      container.animate(
-        {
-          scrollLeft: pos,
-        },
-        speed == undefined ? 1000 : speed
-      );
-    }
-
-    return this;
-  };
-
   const handleClick = (link) => {
     setActiveSection(link.hash);
     // Use setTimeout to ensure scrollCenter runs after setActiveSection updates the state
     setTimeout(() => {
-      $("header nav").scrollClickCenter(".nav-active", 300);
+      scrollCenter(".nav-active", 300);
     }, 0);
   };
 
