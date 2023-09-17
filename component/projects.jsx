@@ -7,8 +7,6 @@ import Project from "./project";
 import { useSectionInView } from "@/lib/hooks";
 
 export default function Projects() {
-  
-
   return (
     <section id="projects" className="mySection">
       {/* <SectionHeading>My projects</SectionHeading>
@@ -20,7 +18,7 @@ export default function Projects() {
         ))}
       </div> */}
 
-      <h1>Project</h1>
+      <SectionHeading title="Projects" />
     </section>
   );
 }

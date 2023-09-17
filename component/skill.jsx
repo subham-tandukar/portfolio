@@ -21,14 +21,8 @@ import { motion } from "framer-motion";
 // };
 
 export default function Skills() {
-  
-
   return (
-    <section
-      id="skills"
-     
-      className="mySection"
-    >
+    <section id="skills" className="mySection">
       {/* <SectionHeading>My skills</SectionHeading>
       <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
         {skillsData.map((skill, index) => (
@@ -48,7 +42,7 @@ export default function Skills() {
         ))}
       </ul> */}
 
-      <h1>Skill</h1>
+      <SectionHeading title="Skills" />
     </section>
   );
 }

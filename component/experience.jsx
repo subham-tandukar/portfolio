@@ -14,7 +14,8 @@ export default function Experience() {
   return (
     <section id="experience"  className="mySection">
       {/* <SectionHeading>My experience</SectionHeading> */}
-    <h1>Experience</h1>
+  
+    <SectionHeading title="Experience" />
     </section>
   );
 }

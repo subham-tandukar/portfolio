@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap"); */
+
 :root {
-  --primary: #030712;
+  --primary: #111827;
+  /* --courgette: "Courgette", cursive; */
 }
 
 html {
@@ -18,18 +21,24 @@ html {
   --body-color: var(--primary);
   --nav-bg: #e2e2e3;
   --linear: linear-gradient(90deg, #dbd7fb, #fbe2e3);
+  --heading-color: linear-gradient(90deg, #676394, #946263);
   --shadow: rgba(0, 0, 0, 0.5);
+  --txt:rgba(0,0,0,0.4);
+  --hover-txt:var(--primary);;
 }
 
 html.dark {
   --line-color: rgba(255, 255, 255, 0.2);
   --bg-1: #946263;
   --bg-2: #676394;
-  --body-bg: #111827;
+  --body-bg: var(--primary);
   --body-color: rgba(249, 250, 251, 0.9);
   --nav-bg: #060b17;
   --linear: linear-gradient(90deg, #676394, #946263);
+  --heading-color: linear-gradient(90deg, #dbd7fb, #fbe2e3);
   --shadow: rgba(255, 255, 255, 0.5);
+  --txt:rgba(255,255,255,0.4);
+  --hover-txt:#fff;
 }
 
 * {
@@ -41,6 +50,20 @@ html.dark {
 body {
   background-color: var(--body-bg);
   color: var(--body-color);
+
+  font-family: var(--comicNeue-font);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--courgette-font);
+  background: var(--heading-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .bg-1 {
   background: var(--bg-1);
@@ -87,14 +110,49 @@ body {
 
 .mySection {
   height: 100vh;
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   /* align-items:center; */
   scroll-margin-top: 1rem;
 }
 
-.mySection h1 {
-  font-weight: bold;
-  text-transform: uppercase;
+.heading {
+  display: flex;
+  align-items: baseline;
+}
+.heading h1 {
   font-size: 70px;
+}
+
+.heading .wave {
+  margin-left: 10px;
+}
+
+.heading .wave .dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 3px;
+  background: var(--heading-color);
+  animation: wave 1.3s linear infinite;
+}
+
+.heading .wave .dot:nth-child(2) {
+  animation-delay: -1.1s;
+}
+.heading .wave .dot:nth-child(3) {
+  animation-delay: -0.9s;
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: initial;
+  }
+
+  30% {
+    transform: translateY(-15px);
+  }
 }

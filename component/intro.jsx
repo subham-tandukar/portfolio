@@ -115,7 +115,6 @@ export default function Intro() {
         </a>
       </motion.div> */}
 
-      <h1>Home</h1>
     </section>
   );
 }

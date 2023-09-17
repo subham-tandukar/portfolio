@@ -1,6 +1,6 @@
 "use client";
 
-import React,{ChangeEvent, useState} from "react";
+import React, { ChangeEvent, useState } from "react";
 import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
@@ -8,7 +8,6 @@ import { useSectionInView } from "@/lib/hooks";
 import { FaPaperPlane } from "react-icons/fa";
 
 export default function Contact() {
- 
   const [submit, setSubmit] = useState(false);
   // interface InputValues {
   //   email: string;
@@ -40,7 +39,6 @@ export default function Contact() {
   return (
     <motion.section
       id="contact"
-    
       className="mySection"
       initial={{
         opacity: 0,
@@ -114,7 +112,7 @@ export default function Contact() {
     </button>
       </form> */}
 
-      <h1>Contact</h1>
+      <SectionHeading title="Contact" />
     </motion.section>
   );
 }
