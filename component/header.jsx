@@ -39,14 +39,6 @@ export default function Header() {
     }
   };
 
-  const handleClick = (link) => {
-    setActiveSection(link.hash);
-    // Use setTimeout to ensure scrollCenter runs after setActiveSection updates the state
-    setTimeout(() => {
-      scrollCenter(".nav-active", 300);
-    }, 0);
-  };
-
   useEffect(() => {
     const sections = document.querySelectorAll(".mySection");
     navLinks.current = document.querySelectorAll("header nav a");
@@ -145,20 +137,19 @@ export default function Header() {
 
   return (
     <>
-      <header className="">
+      <header>
         <div
           className={`nav-prev arrow ${showPrevArrow ? "" : " hidden"}`}
           onClick={handlePrevClick}
         >
           <BiChevronLeft />
         </div>
-        <nav className="" onScroll={handleNavScroll} ref={navContainer}>
+        <nav onScroll={handleNavScroll} ref={navContainer}>
           {links.map((link) => (
             <Link
               className={activeSection === link.hash ? "nav-active" : ""}
               key={link.hash}
               href={link.hash}
-              onClick={() => handleClick(link)}
             >
               <span className="icon">
                 <Image alt={link.name} src={link.icon} quality={100} />
