@@ -3,11 +3,11 @@ import Header from "@/component/header";
 import "./globals.css";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import { ThemeContextProvider } from "@/context/theme-context";
-import Theme from "@/component/theme";
-import { Courgette, Comic_Neue } from "next/font/google";
+import { Raleway, Comic_Neue } from "next/font/google";
 import { metadata } from "./metatag";
+import TopHeader from "@/component/top-header";
 
-const courgette = Courgette({ weight: "400", subsets: ["latin"] });
+const raleway = Raleway({ weight: "400", subsets: ["latin"] });
 const comicNeue = Comic_Neue({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
@@ -24,18 +24,16 @@ const RootLayout = ({ children }) => {
       <style jsx global>{`
         :root {
           --comicNeue-font: ${comicNeue.style.fontFamily};
-          --courgette-font: ${courgette.style.fontFamily};
+          --raleway-font: ${raleway.style.fontFamily};
         }
       `}</style>
       <body>
-        <div className="bg-1"></div>
-        <div className="bg-2"></div>
 
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
+            <TopHeader />
             <Header />
-            {children}
-            <Theme />
+            <div className="container">{children}</div>
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>

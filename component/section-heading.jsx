@@ -4,11 +4,7 @@ const SectionHeading = (props) => {
   return (
     <div className="heading">
       <h1>{props.title}</h1>
-      <div className="wave">
-        <span className="dot"></span>
-        <span className="dot"></span>
-        <span className="dot"></span>
-      </div>
+      <div class="heading-line"></div>
     </div>
   );
 };

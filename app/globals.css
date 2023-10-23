@@ -2,43 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap"); */
-
 :root {
-  --primary: #111827;
-  /* --courgette: "Courgette", cursive; */
+  --primary-color: rgb(3, 34, 143);
+  --secondary-color: #0e73e4;
 }
 
 html {
-  scroll-behavior: smooth !important;
+  @apply !scroll-smooth;
 }
 
 html {
-  --line-color: #e5e7eb;
-  --bg-1: #fbe2e3;
-  --bg-2: #dbd7fb;
+  --line-color: var(--primary-color);
+  --line-dot-color: #1940aa;
   --body-bg: #f9fafb;
-  --body-color: var(--primary);
+  --body-color: #333;
+  --top-nav-bg: rgba(255, 255, 255, 0.7);
   --nav-bg: #e2e2e3;
-  --linear: linear-gradient(90deg, #dbd7fb, #fbe2e3);
-  --heading-color: linear-gradient(90deg, #676394, #946263);
+  --nav-link-bg: rgba(3, 34, 143, 0.08);
+  --heading-color: #333;
   --shadow: rgba(0, 0, 0, 0.5);
-  --txt:rgba(0,0,0,0.4);
-  --hover-txt:var(--primary);;
+  --txt: rgba(0, 0, 0, 0.4);
+  --hover-txt: var(--primary-color);
+  --drop-shadow: 0 15px 35px var(--shadow);
 }
 
 html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
-  --bg-1: #946263;
-  --bg-2: #676394;
-  --body-bg: var(--primary);
+  --line-color: rgba(255, 255, 255, 0.5);
+  --line-dot-color: #e5e7eb;
+  --body-bg: #111827;
   --body-color: rgba(249, 250, 251, 0.9);
+  --top-nav-bg: rgba(3, 7, 18, 0.75);
   --nav-bg: #060b17;
-  --linear: linear-gradient(90deg, #676394, #946263);
-  --heading-color: linear-gradient(90deg, #dbd7fb, #fbe2e3);
+  --nav-link-bg: rgba(249, 250, 251, 0.05);
+  --heading-color: #e2e2e3;
   --shadow: rgba(255, 255, 255, 0.5);
-  --txt:rgba(255,255,255,0.4);
-  --hover-txt:#fff;
+  --txt: rgba(255, 255, 255, 0.4);
+  --hover-txt: #fff;
+  --drop-shadow: 0 37px -1px var(--shadow);
 }
 
 * {
@@ -50,7 +50,6 @@ html.dark {
 body {
   background-color: var(--body-bg);
   color: var(--body-color);
-
   font-family: var(--comicNeue-font);
 }
 h1,
@@ -59,53 +58,16 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--courgette-font);
+  font-family: var(--raleway-font);
   background: var(--heading-color);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  @apply font-bold;
 }
-.bg-1 {
-  background: var(--bg-1);
-  width: 31.25rem;
-  border-radius: 9999px;
-  filter: blur(10rem);
-  -webkit-filter: blur(10rem);
-  height: 31.25rem;
-  z-index: -10;
-  top: -6rem;
-  right: 11rem;
-  position: absolute;
-}
-.bg-2 {
-  background: var(--bg-2);
-  filter: blur(10rem);
-  -webkit-filter: blur(10rem);
-  height: 31.25rem;
-  z-index: -10;
-  border-radius: 9999px;
-  top: -1rem;
-  left: -35rem;
-  position: absolute;
-}
-
-@media (min-width: 1024px) {
-  .bg-2 {
-    left: -28rem;
-  }
-}
-@media (min-width: 768px) {
-  .bg-2 {
-    left: -33rem;
-  }
-}
-@media (min-width: 640px) {
-  .bg-1 {
-    width: 68.75rem;
-  }
-  .bg-2 {
-    width: 68.75rem;
-  }
+.my__container {
+  @apply mx-auto px-10;
+  max-width: 1200px;
 }
 
 .mySection {
@@ -113,18 +75,58 @@ h6 {
   /* display: flex;
   justify-content: center; */
   /* align-items:center; */
-  scroll-margin-top: 1rem;
+  scroll-margin-top: 6rem;
 }
 
-.heading {
-  display: flex;
-  align-items: baseline;
-}
 .heading h1 {
-  font-size: 70px;
+  @apply font-bold text-6xl pb-1;
+}
+.heading .heading-line {
+  position: relative;
+  background-color: var(--line-color);
+  height: 5px;
+  width: 90px;
+  border-radius: 30px;
+  margin: 20px auto;
+}
+.heading .heading-line:before {
+  background-color: var(--line-dot-color);
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -2.7px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  -webkit-animation-direction: alternate-reverse;
+  -webkit-animation-name: watermark-animate;
+  animation-name: watermark-animate;
 }
 
-.heading .wave {
+@keyframes watermark-animate {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .my__container {
+    @apply mx-auto px-5;
+  }
+}
+
+/* .heading .wave {
   margin-left: 10px;
 }
 
@@ -155,4 +157,4 @@ h6 {
   30% {
     transform: translateY(-15px);
   }
-}
+} */

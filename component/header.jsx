@@ -7,12 +7,13 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 import "@/css/header.css";
 import Image from "next/image";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
+import { motion } from "framer-motion";
 
 export default function Header() {
   const { activeSection, setActiveSection } = useActiveSectionContext();
 
   const navLinks = useRef([]);
-  const navContainer = useRef(null);
+
   const [currentActive, setCurrentActive] = useState(null);
 
   const initialLink = links[0].hash;
@@ -21,39 +22,26 @@ export default function Header() {
   const [showPrevArrow, setShowPrevArrow] = useState(false);
   const [showNextArrow, setShowNextArrow] = useState(false);
 
-  // Function to scroll the navigation to the center of the active section
-  const scrollCenter = (elem, speed) => {
-    const active = document.querySelector(elem);
-
-    if (active) {
-      const container = navContainer.current;
-      const activeWidth = active.offsetWidth / 2;
-      const pos = active.offsetLeft + activeWidth;
-      const containerWidth = container.clientWidth;
-      const targetScroll = pos - containerWidth / 2;
-
-      container.scrollTo({
-        left: targetScroll,
-        behavior: "smooth",
-      });
-    }
-  };
-
   useEffect(() => {
     const sections = document.querySelectorAll(".mySection");
     navLinks.current = document.querySelectorAll("header nav a");
-
+    const container = document.querySelector("header nav");
     const handleScroll = () => {
       const bottom = window.scrollY + window.innerHeight;
       let currentSection = null;
       let lastScrollPosition = 0;
+
+      // Variable to track if user has tapped
+      let hasTapped = false;
+
       sections.forEach((section) => {
-        const offset = section.offsetTop;
-        const height = section.offsetHeight;
-        const offsetThreshold = height * 0.3;
+        const rect = section.getBoundingClientRect();
         const id = section.getAttribute("id");
 
-        if (bottom >= offset + offsetThreshold && bottom < offset + height) {
+        if (
+          rect.top <= window.innerHeight - 9 * 16 &&
+          rect.bottom >= window.innerHeight
+        ) {
           navLinks.current.forEach((link) => {
             link.classList.remove("nav-active");
           });
@@ -73,17 +61,44 @@ export default function Header() {
       if (currentSection !== currentActive) {
         setCurrentActive(currentSection);
         if (bottom > lastScrollPosition) {
-          // Scroll down: scroll to the center of the active section
-          scrollCenter(".nav-active", 300);
+          // Scroll down: scroll the navigation container to center the active link
+          const activeLink = document.querySelector("header nav a.nav-active");
+          if (activeLink) {
+            const linkRect = activeLink.getBoundingClientRect();
+            const containerWidth = container.clientWidth;
+            const containerScrollLeft = container.scrollLeft;
+
+            const scrollToCenter =
+              linkRect.left - containerWidth / 2 + linkRect.width / 2;
+            container.scrollTo({
+              left: scrollToCenter + containerScrollLeft,
+              behavior: "smooth",
+            });
+          }
         } else {
-          // Scroll up: scroll to the center of the active section
-          scrollCenter(".nav-active", 300);
+          // Scroll up: scroll the navigation container to center the active link
+          const activeLink = document.querySelector("header nav a.nav-active");
+          if (activeLink) {
+            const linkRect = activeLink.getBoundingClientRect();
+            const containerWidth = container.clientWidth;
+            const containerScrollLeft = container.scrollLeft;
+
+            const scrollToCenter =
+              linkRect.left - containerWidth / 2 + linkRect.width / 2;
+            container.scrollTo({
+              left: scrollToCenter + containerScrollLeft,
+              behavior: "smooth",
+            });
+          }
         }
         lastScrollPosition = bottom;
+
+        // Reset hasTapped when the user scrolls
+        hasTapped = false;
       }
 
       // Check if the user is at the top of the page
-      if (window.scrollY === 0) {
+      if (window.scrollY === 0 && !hasTapped) {
         navLinks.current.forEach((link) => {
           link.classList.remove("nav-active");
         });
@@ -94,6 +109,9 @@ export default function Header() {
           homeLink.classList.add("nav-active");
           setActiveSection(`${initialLink}`);
         }
+
+        // Set hasTapped to true to prevent immediate scrolling again
+        hasTapped = true;
       }
     };
 
@@ -107,9 +125,10 @@ export default function Header() {
 
   // Handle the scroll event on the nav element
   const handleNavScroll = () => {
-    const scrollLeft = navContainer.current.scrollLeft;
-    const scrollWidth = navContainer.current.scrollWidth;
-    const clientWidth = navContainer.current.clientWidth;
+    const container = document.querySelector("header nav");
+    const scrollLeft = container.scrollLeft;
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
 
     setShowPrevArrow(scrollLeft > 0);
     setShowNextArrow(scrollLeft + clientWidth < scrollWidth);
@@ -121,20 +140,21 @@ export default function Header() {
 
   // Scroll to the next section on click
   const handleNextClick = () => {
-    navContainer.current.scrollTo({
-      left: navContainer.current.scrollLeft + 100, // Adjust the scroll amount as needed
+    const container = document.querySelector("header nav");
+    container.scrollTo({
+      left: container.scrollLeft + 100, // Adjust the scroll amount as needed
       behavior: "smooth",
     });
   };
 
   // Scroll to the previous section on click
   const handlePrevClick = () => {
-    navContainer.current.scrollTo({
-      left: navContainer.current.scrollLeft - 100, // Adjust the scroll amount as needed
+    const container = document.querySelector("header nav");
+    container.scrollTo({
+      left: container.scrollLeft - 100, // Adjust the scroll amount as needed
       behavior: "smooth",
     });
   };
-
   return (
     <>
       <header>
@@ -144,7 +164,7 @@ export default function Header() {
         >
           <BiChevronLeft />
         </div>
-        <nav onScroll={handleNavScroll} ref={navContainer}>
+        <nav onScroll={handleNavScroll}>
           {links.map((link) => (
             <Link
               className={activeSection === link.hash ? "nav-active" : ""}
@@ -155,7 +175,19 @@ export default function Header() {
                 <Image alt={link.name} src={link.icon} quality={100} />
               </span>
               <span className="text">{link.name}</span>
-              {activeSection === link.hash && <span className="mob__bg"></span>}
+              {/* {activeSection === link.hash && <span className="mob__bg"></span>} */}
+
+              {link.hash === activeSection && (
+                <motion.span
+                  className="mob__bg"
+                  layoutId="activeSection"
+                  transition={{
+                    type: "spring",
+                    stiffness: 380,
+                    damping: 30,
+                  }}
+                ></motion.span>
+              )}
             </Link>
           ))}
           <div className="slider"></div>
