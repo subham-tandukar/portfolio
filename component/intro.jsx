@@ -81,21 +81,12 @@ export default function Intro() {
                       speechStatus === "started" ? "show" : ""
                     } speaker__bar`}
                   >
-                    <Tippy
-                      content={
-                        speechStatus !== "started"
-                          ? "Play Audio"
-                          : "Pause Audio"
-                      }
-                      animation="fade"
-                    >
-                      <div>
-                        <PiSpeakerSimpleHighFill
-                          size="1rem"
-                          onClick={speechStatus !== "started" ? start : pause}
-                        />
-                      </div>
-                    </Tippy>
+                    <div>
+                      <PiSpeakerSimpleHighFill
+                        size="1rem"
+                        onClick={speechStatus !== "started" ? start : pause}
+                      />
+                    </div>
                   </div>
                 </motion.div>
               </>
