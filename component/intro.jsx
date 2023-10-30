@@ -13,7 +13,7 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 import profile from "@/public/images/profile.png";
 import github from "@/public/images/github.png";
 import linkedin from "@/public/images/linkedin.png";
-import { useSpeechSynthesis } from "react-speech-kit";
+// import { useSpeechSynthesis } from "react-speech-kit";
 import Typewriter from "typewriter-effect";
 
 export default function Intro() {
@@ -24,24 +24,24 @@ export default function Intro() {
     setIsSpeaking(false); // Speech is finished
   };
 
-  const { speak, cancel, voices } = useSpeechSynthesis({ onEnd });
+  // const { speak, cancel, voices } = useSpeechSynthesis({ onEnd });
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const toggleSpeech = () => {
     setIsSpeaking(!isSpeaking); // Toggle the speech state
   };
 
-  useEffect(() => {
-    if (!isSpeaking) {
-      cancel(); // Cancel the current speech // Pause the speech by speaking an empty string
-    } else {
-      const textToSpeak = speakRef.current.textContent;
-      speak({
-        text: textToSpeak,
-        voice: voices[1],
-      });
-    }
-  }, [isSpeaking]);
+  // useEffect(() => {
+  //   if (!isSpeaking) {
+  //     cancel(); // Cancel the current speech // Pause the speech by speaking an empty string
+  //   } else {
+  //     const textToSpeak = speakRef.current.textContent;
+  //     speak({
+  //       text: textToSpeak,
+  //       voice: voices[1],
+  //     });
+  //   }
+  // }, [isSpeaking]);
 
   return (
     <section
@@ -79,7 +79,7 @@ export default function Intro() {
               delay: 0.5,
               duration: 0.7,
             }}
-            onClick={toggleSpeech}
+            // onClick={toggleSpeech}
           >
             <div className={`${isSpeaking ? "show" : ""} speaker__bar`}>
               <PiSpeakerSimpleHighFill size="1rem" />

@@ -4,8 +4,12 @@ import React from "react";
 import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
+import Speech from 'react-text-to-speech';
 
 export default function About() {
+  const startBtn = <button className='my-start-btn'>Start Speech</button>
+    const pauseBtn = <button className='my-pause-btn'>Pause Speech</button>
+    const stopBtn = <button className='my-stop-btn'>Stop Speech</button>
   return (
     <motion.section
       className=" mySection"
@@ -24,6 +28,18 @@ export default function About() {
       </p> */}
 
       <SectionHeading title="About"/>
+      <Speech 
+        text='This is a partially customized speech component.'
+        pitch={1.5}
+        rate={1}
+        volume={1}
+        startBtn={startBtn}
+        pauseBtn={pauseBtn}
+        stopBtn={stopBtn}
+        props={{ title: 'React Text-To-Speech Component' }}
+        onError={() => console.error('Browser not supported!')}
+    />
+      
     </motion.section>
   );
 }
