@@ -11,8 +11,6 @@ import { PiSpeakerSimpleHighFill } from "react-icons/pi";
 import "@/css/intro.css";
 import profile from "@/public/images/profile.png";
 import Speech from "react-text-to-speech";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css"; // optional
 
 export default function Intro() {
   const speakRef = useRef();
