@@ -7,7 +7,7 @@
   border-color: var(--top-nav-bg);
 }
 .intro__section .profile__icon {
-  @apply absolute bottom-0 left-[100%] text-4xl flex items-center cursor-pointer z-[100];
+  @apply absolute bottom-0 left-[100%] right-[25px] text-4xl flex items-center cursor-pointer z-[100];
 }
 .intro__section .profile__icon.bounch {
   animation: bounce 2s ease infinite;

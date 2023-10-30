@@ -54,7 +54,7 @@ export default function Intro() {
 
           <Speech
             text={textToSpeakRef.current}
-            pitch={1.5}
+            pitch={0.5}
             rate={1}
             volume={1}
             onError={() => console.error("Browser not supported!")}
@@ -64,7 +64,10 @@ export default function Intro() {
                 <motion.div
                   className={`${
                     speechStatus !== "started" ? "bounch" : ""
-                  } profile__icon`}
+                  } profile__icon tooltip`}
+                  data-tooltip={
+                    speechStatus !== "started" ? "Play Audio" : "Pause Audio"
+                  }
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
@@ -73,6 +76,7 @@ export default function Intro() {
                     delay: 0.5,
                     duration: 0.7,
                   }}
+                  onClick={speechStatus !== "started" ? start : pause}
                 >
                   <div
                     className={`${
@@ -80,10 +84,7 @@ export default function Intro() {
                     } speaker__bar`}
                   >
                     <div>
-                      <PiSpeakerSimpleHighFill
-                        size="1rem"
-                        onClick={speechStatus !== "started" ? start : pause}
-                      />
+                      <PiSpeakerSimpleHighFill size="1rem" />
                     </div>
                   </div>
                 </motion.div>
