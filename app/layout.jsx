@@ -7,8 +7,8 @@ import { Raleway, Comic_Neue } from "next/font/google";
 import { metadata } from "./metatag";
 import TopHeader from "@/component/top-header";
 
-const raleway = Raleway({ weight: "400", subsets: ["latin"] });
-const comicNeue = Comic_Neue({
+const primary = Raleway({ weight: ["300", "400", "700"], subsets: ["latin"] });
+const secondary = Comic_Neue({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
 });
@@ -23,17 +23,16 @@ const RootLayout = ({ children }) => {
       </head>
       <style jsx global>{`
         :root {
-          --comicNeue-font: ${comicNeue.style.fontFamily};
-          --raleway-font: ${raleway.style.fontFamily};
+          --secondary-font: ${secondary.style.fontFamily};
+          --primary-font: ${primary.style.fontFamily};
         }
       `}</style>
       <body>
-
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
             <TopHeader />
             <Header />
-            <div className="container">{children}</div>
+            <div className="my__container">{children}</div>
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>

@@ -1,27 +1,55 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { BsArrowRight, BsLinkedin } from "react-icons/bs";
+import { BsArrowRight, BsGithub } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
-import { FaGithubSquare } from "react-icons/fa";
-import { useSectionInView } from "@/lib/hooks";
+import { BiLogoLinkedin } from "react-icons/bi";
+import { PiSpeakerSimpleHighFill } from "react-icons/pi";
+import "@/css/intro.css";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import profile from "@/public/images/profile.png";
+import github from "@/public/images/github.png";
+import linkedin from "@/public/images/linkedin.png";
+import { useSpeechSynthesis } from "react-speech-kit";
+import Typewriter from "typewriter-effect";
 
 export default function Intro() {
-  
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+  const speakRef = useRef();
+
+  const onEnd = () => {
+    setIsSpeaking(false); // Speech is finished
+  };
+
+  const { speak, cancel, voices } = useSpeechSynthesis({ onEnd });
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const toggleSpeech = () => {
+    setIsSpeaking(!isSpeaking); // Toggle the speech state
+  };
+
+  useEffect(() => {
+    if (!isSpeaking) {
+      cancel(); // Cancel the current speech // Pause the speech by speaking an empty string
+    } else {
+      const textToSpeak = speakRef.current.textContent;
+      speak({
+        text: textToSpeak,
+        voice: voices[1],
+      });
+    }
+  }, [isSpeaking]);
 
   return (
     <section
-     
       id="home"
-      className="mySection"
+      className="mySection my__container my__container-small intro__section"
     >
-      {/* <div className="flex items-center justify-center">
-        <div className="relative">
+      <div className="profile__wrapper">
+        <div className="wrapper">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -32,89 +60,126 @@ export default function Intro() {
           >
             <Image
               src={profile}
-              alt="porfile"
+              alt="profile"
               width="192"
               height="192"
               quality="95"
               priority={true}
-              className="h-24 w-24 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
+              className="profile"
             />
           </motion.div>
 
-          <motion.span
-            className="absolute bottom-0 right-0 text-4xl"
+          <motion.div
+            className={`${!isSpeaking ? "bounch" : ""} profile__icon`}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
               type: "spring",
               stiffness: 125,
-              delay: 0.1,
+              delay: 0.5,
               duration: 0.7,
             }}
+            onClick={toggleSpeech}
           >
-            👋
-          </motion.span>
+            <div className={`${isSpeaking ? "show" : ""} speaker__bar`}>
+              <PiSpeakerSimpleHighFill size="1rem" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="profile-border"
+            initial={{ opacity: 0, x: "-50%", y: "-50%" }}
+            animate={{ opacity: 1, x: "-50%", y: "-50%" }}
+            transition={{
+              type: "tween",
+              duration: 0.2,
+            }}
+          >
+            <svg width="100%" height="100%" viewBox="0 0 220 220">
+              <circle
+                id="orbit3"
+                cx="50%"
+                cy="50%"
+                r="95px"
+                fill="none"
+                stroke="var(--line-color)"
+                strokeWidth="3px"
+              />
+
+              <circle
+                id="profile-circle"
+                cx="50%"
+                cy="50%"
+                r="8px"
+                fill="var(--line-dot-color)"
+              />
+            </svg>
+          </motion.div>
+
+          <div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              type: "tween",
+              duration: 0.2,
+            }}
+            className={`${isSpeaking ? "hide" : ""} type__writer`}
+          >
+            <Typewriter
+              options={{
+                strings: ["Play Audio..."],
+                autoStart: true,
+                loop: true,
+              }}
+            />
+          </div>
         </div>
       </div>
 
       <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
+        ref={speakRef}
       >
-        <span className="font-bold ">Hello, I'm Subham.</span> I'm a{" "}
-        <span className="font-bold">frontend web developer</span> with{" "}
-        <span className="font-bold">more than 1 year</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>. My focus is{" "}
-        <span className="underline">React (Next.js)</span>.
+        <span>Hello, I'm Subham.</span> I'm a{" "}
+        <span>Frontend Web Developer</span> with <span>more than 1 year</span>{" "}
+        of experience. I enjoy building{" "}
+        <span className="italic">websites.</span> My focus is{" "}
+        <span className="underline">React Js.</span>
       </motion.h1>
 
       <motion.div
-        className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
           delay: 0.1,
         }}
       >
-        <Link
-          href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
-          onClick={() => {
-            setActiveSection("Contact");
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          Contact me here{" "}
-          <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
-        </Link>
+        <div className="btn-row">
+          <Link href="#contact" className="btn">
+            Contact me here <BsArrowRight className="btn-icon" />
+          </Link>
 
-        <a
-          className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="/CV.pdf"
-          download
-        >
-          Download CV{" "}
-          <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
-        </a>
+          <a className="btn btn-outline" href="/CV.pdf" download>
+            Download CV <HiDownload className="btn-icon" />
+          </a>
+          <a
+            className="btn-bg linkedin"
+            href="https://www.linkedin.com/in/aniket-tandukar-7b9aaa180/"
+            target="_blank"
+          >
+            <BiLogoLinkedin />
+          </a>
 
-        <a
-          className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://www.linkedin.com/in/aniket-tandukar-7b9aaa180/"
-          target="_blank"
-        >
-          <BsLinkedin />
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://github.com/subham-tandukar"
-          target="_blank"
-        >
-          <FaGithubSquare />
-        </a>
-      </motion.div> */}
-
+          <a
+            className="btn-bg github"
+            href="https://github.com/subham-tandukar"
+            target="_blank"
+          >
+            <BsGithub />
+          </a>
+        </div>
+      </motion.div>
     </section>
   );
 }

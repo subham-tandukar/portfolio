@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: rgb(3, 34, 143);
+  --primary-color: #03228f;
   --secondary-color: #0e73e4;
+  --transition: all 0.3s linear;
 }
 
 html {
@@ -20,9 +21,16 @@ html {
   --nav-bg: #e2e2e3;
   --nav-link-bg: rgba(3, 34, 143, 0.08);
   --heading-color: #333;
+  --linear: linear-gradient(
+    90deg,
+    var(--primary-color) 10%,
+    var(--secondary-color) 100%
+  );
   --shadow: rgba(0, 0, 0, 0.5);
   --txt: rgba(0, 0, 0, 0.4);
   --hover-txt: var(--primary-color);
+  --btn-txt: #fff;
+  --outline-btn-txt: #333;
   --drop-shadow: 0 15px 35px var(--shadow);
 }
 
@@ -30,14 +38,17 @@ html.dark {
   --line-color: rgba(255, 255, 255, 0.5);
   --line-dot-color: #e5e7eb;
   --body-bg: #111827;
-  --body-color: rgba(249, 250, 251, 0.9);
+  --body-color: rgba(249, 250, 251, 1);
   --top-nav-bg: rgba(3, 7, 18, 0.75);
   --nav-bg: #060b17;
   --nav-link-bg: rgba(249, 250, 251, 0.05);
   --heading-color: #e2e2e3;
+  --linear: linear-gradient(90deg, #fff 10%, #fff 100%);
   --shadow: rgba(255, 255, 255, 0.5);
   --txt: rgba(255, 255, 255, 0.4);
   --hover-txt: #fff;
+  --btn-txt: #333;
+  --outline-btn-txt: #fff;
   --drop-shadow: 0 37px -1px var(--shadow);
 }
 
@@ -50,7 +61,7 @@ html.dark {
 body {
   background-color: var(--body-bg);
   color: var(--body-color);
-  font-family: var(--comicNeue-font);
+  font-family: var(--secondary-font);
 }
 h1,
 h2,
@@ -58,16 +69,15 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--raleway-font);
-  background: var(--heading-color);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: var(--primary-font);
   @apply font-bold;
 }
 .my__container {
   @apply mx-auto px-10;
   max-width: 1200px;
+}
+.my__container-small {
+  max-width: 900px;
 }
 
 .mySection {
@@ -79,7 +89,7 @@ h6 {
 }
 
 .heading h1 {
-  @apply font-bold text-6xl pb-1;
+  @apply font-bold text-6xl pb-1 text-center;
 }
 .heading .heading-line {
   position: relative;
@@ -158,3 +168,164 @@ h6 {
     transform: translateY(-15px);
   }
 } */
+
+/* button */
+.btn {
+  color: var(--btn-txt);
+  background: var(--linear);
+  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  @apply relative py-3 px-5 rounded-full cursor-pointer;
+}
+.btn.btn-outline {
+  background: transparent;
+  color: var(--outline-btn-txt);
+  border: 1px solid var(--outline-btn-txt);
+}
+.btn.btn-outline:hover {
+  color: var(--btn-txt);
+  background: var(--linear);
+  border: 1px solid transparent;
+}
+.btn:before,
+.btn:after {
+  content: "";
+  @apply absolute w-[150%] left-[50%] h-full translate-x-[-50%] z-[-1000] bg-no-repeat;
+}
+
+.btn:hover:before {
+  top: -70%;
+  background-image: radial-gradient(
+      circle,
+      var(--hover-txt) 20%,
+      transparent 20%
+    ),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--hover-txt) 20%,
+      transparent 30%
+    ),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(
+      circle,
+      transparent 10%,
+      var(--hover-txt) 15%,
+      transparent 20%
+    ),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+    10% 10%, 18% 18%;
+  background-position: 50% 120%;
+  animation: greentopBubbles 0.6s ease;
+}
+
+@keyframes greentopBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+      40% 90%, 55% 90%, 70% 90%;
+  }
+
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+      50% 50%, 65% 20%, 90% 30%;
+  }
+
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+      50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+.btn:hover::after {
+  bottom: -70%;
+  background-image: radial-gradient(
+      circle,
+      var(--hover-txt) 20%,
+      transparent 20%
+    ),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(
+      circle,
+      transparent 10%,
+      var(--hover-txt) 15%,
+      transparent 20%
+    ),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%),
+    radial-gradient(circle, var(--hover-txt) 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+  background-position: 50% 0%;
+  animation: bottomBubbles 0.6s ease;
+}
+
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+      70% -10%, 70% 0%;
+  }
+
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+      105% 0%;
+  }
+
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+      110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+.btn-row {
+  @apply flex gap-3 flex-wrap justify-center items-center;
+}
+.btn-icon {
+  @apply inline-block align-middle;
+}
+.btn-bg {
+  @apply w-12 h-12 rounded-full flex items-center justify-center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+.btn-bg svg {
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  @apply text-lg;
+}
+.btn-bg.github svg {
+  fill: #333;
+}
+.btn-bg.linkedin svg {
+  fill: #0077b5;
+}
+.btn-bg.github:hover {
+  background: #333;
+}
+.btn-bg.linkedin:hover {
+  background: #0077b5;
+}
+.btn-bg:hover svg,
+html.dark .btn-bg svg {
+  fill: white;
+}
+/* button */

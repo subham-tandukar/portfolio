@@ -157,7 +157,13 @@ export default function Header() {
   };
   return (
     <>
-      <header>
+      <motion.header
+        initial={{ y: 100, x: "-50%", opacity: 0 }}
+        animate={{ y: 0, x: "-50%", opacity: 1 }}
+        transition={{
+          delay: 0.5,
+        }}
+      >
         <div
           className={`nav-prev arrow ${showPrevArrow ? "" : " hidden"}`}
           onClick={handlePrevClick}
@@ -198,7 +204,7 @@ export default function Header() {
         >
           <BiChevronRight />
         </div>
-      </header>
+      </motion.header>
     </>
   );
 }
