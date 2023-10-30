@@ -9,40 +9,25 @@ import { HiDownload } from "react-icons/hi";
 import { BiLogoLinkedin } from "react-icons/bi";
 import { PiSpeakerSimpleHighFill } from "react-icons/pi";
 import "@/css/intro.css";
-import { useActiveSectionContext } from "@/context/active-section-context";
 import profile from "@/public/images/profile.png";
-import github from "@/public/images/github.png";
-import linkedin from "@/public/images/linkedin.png";
-// import { useSpeechSynthesis } from "react-speech-kit";
-import Typewriter from "typewriter-effect";
+import Speech from "react-text-to-speech";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css"; // optional
 
 export default function Intro() {
-  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   const speakRef = useRef();
+  const textToSpeakRef = useRef("");
+  const [load, setLoad] = useState(false);
 
-  const onEnd = () => {
-    setIsSpeaking(false); // Speech is finished
-  };
-
-  // const { speak, cancel, voices } = useSpeechSynthesis({ onEnd });
-  const [isSpeaking, setIsSpeaking] = useState(false);
-
-  const toggleSpeech = () => {
-    setIsSpeaking(!isSpeaking); // Toggle the speech state
-  };
-
-  // useEffect(() => {
-  //   if (!isSpeaking) {
-  //     cancel(); // Cancel the current speech // Pause the speech by speaking an empty string
-  //   } else {
-  //     const textToSpeak = speakRef.current.textContent;
-  //     speak({
-  //       text: textToSpeak,
-  //       voice: voices[1],
-  //     });
-  //   }
-  // }, [isSpeaking]);
-
+  useEffect(() => {
+    setLoad(true);
+  }, []);
+  useEffect(() => {
+    // Ensure the element is present before accessing its text content
+    if (speakRef.current) {
+      textToSpeakRef.current = speakRef.current.textContent;
+    }
+  }, [load]);
   return (
     <section
       id="home"
@@ -69,22 +54,53 @@ export default function Intro() {
             />
           </motion.div>
 
-          <motion.div
-            className={`${!isSpeaking ? "bounch" : ""} profile__icon`}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 125,
-              delay: 0.5,
-              duration: 0.7,
-            }}
-            // onClick={toggleSpeech}
+          <Speech
+            text={textToSpeakRef.current}
+            pitch={1.5}
+            rate={1}
+            volume={1}
+            onError={() => console.error("Browser not supported!")}
           >
-            <div className={`${isSpeaking ? "show" : ""} speaker__bar`}>
-              <PiSpeakerSimpleHighFill size="1rem" />
-            </div>
-          </motion.div>
+            {({ speechStatus, start, pause }) => (
+              <>
+                <motion.div
+                  className={`${
+                    speechStatus !== "started" ? "bounch" : ""
+                  } profile__icon`}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 125,
+                    delay: 0.5,
+                    duration: 0.7,
+                  }}
+                >
+                  <div
+                    className={`${
+                      speechStatus === "started" ? "show" : ""
+                    } speaker__bar`}
+                  >
+                    <Tippy
+                      content={
+                        speechStatus !== "started"
+                          ? "Play Audio"
+                          : "Pause Audio"
+                      }
+                      animation="fade"
+                    >
+                      <div>
+                        <PiSpeakerSimpleHighFill
+                          size="1rem"
+                          onClick={speechStatus !== "started" ? start : pause}
+                        />
+                      </div>
+                    </Tippy>
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </Speech>
 
           <motion.div
             className="profile-border"
@@ -115,24 +131,6 @@ export default function Intro() {
               />
             </svg>
           </motion.div>
-
-          <div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "tween",
-              duration: 0.2,
-            }}
-            className={`${isSpeaking ? "hide" : ""} type__writer`}
-          >
-            <Typewriter
-              options={{
-                strings: ["Play Audio..."],
-                autoStart: true,
-                loop: true,
-              }}
-            />
-          </div>
         </div>
       </div>
 
