@@ -416,8 +416,7 @@ html.dark .btn-bg svg {
 
 [data-tooltip]:before,
 .tooltip:before {
-  margin-left: -6px;
-  margin-bottom: -11.5px;
+  margin-bottom: -11px;
   border-top-color: #000;
   border-top-color: hsla(0, 0%, 20%, 0.9);
 }
