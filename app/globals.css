@@ -6,6 +6,11 @@
   --primary-color: #03228f;
   --secondary-color: #0e73e4;
   --transition: all 0.3s linear;
+  --gradient: linear-gradient(
+    90deg,
+    var(--primary-color) 10%,
+    var(--secondary-color) 100%
+  );
 }
 
 html {
@@ -15,6 +20,7 @@ html {
 html {
   --line-color: var(--primary-color);
   --line-dot-color: #1940aa;
+  --light-line: rgba(0, 0, 0, 0.1);
   --body-bg: #f9fafb;
   --body-color: #333;
   --top-nav-bg: rgba(255, 255, 255, 0.7);
@@ -37,6 +43,7 @@ html {
 html.dark {
   --line-color: rgba(255, 255, 255, 0.5);
   --line-dot-color: #e5e7eb;
+  --light-line: rgba(255, 255, 255, 0.2);
   --body-bg: #111827;
   --body-color: rgba(249, 250, 251, 1);
   --top-nav-bg: rgba(3, 7, 18, 0.75);
@@ -81,7 +88,7 @@ h6 {
 }
 
 .mySection {
-  height: 100vh;
+  min-height: 100vh;
   /* display: flex;
   justify-content: center; */
   /* align-items:center; */
@@ -178,7 +185,7 @@ h6 {
   -moz-transition: all 0.3s linear;
   -ms-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
-  @apply relative py-3 px-5 rounded-full cursor-pointer;
+  @apply relative py-3 px-5 rounded-full cursor-pointer font-semibold;
 }
 .btn.btn-outline {
   background: transparent;

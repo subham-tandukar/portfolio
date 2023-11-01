@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "react-scroll";
 import { BsArrowRight, BsGithub } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { BiLogoLinkedin } from "react-icons/bi";
@@ -11,6 +11,7 @@ import { PiSpeakerSimpleHighFill } from "react-icons/pi";
 import "@/css/intro.css";
 import profile from "@/public/images/profile.png";
 import Speech from "react-text-to-speech";
+import $ from "jquery";
 
 export default function Intro() {
   const speakRef = useRef();
@@ -20,12 +21,39 @@ export default function Intro() {
   useEffect(() => {
     setLoad(true);
   }, []);
+
   useEffect(() => {
     // Ensure the element is present before accessing its text content
     if (speakRef.current) {
       textToSpeakRef.current = speakRef.current.textContent;
     }
   }, [load]);
+
+  //this is where we apply opacity to the arrow
+  $(window).scroll(function () {
+    //get scroll position
+    var topWindow = $(window).scrollTop();
+    //multipl by 2.5 so the arrow will become transparent half-way up the page
+    var topWindow = topWindow * 3;
+
+    //get height of window
+    var windowHeight = $(window).height();
+
+    //set position as percentage of how far the user has scrolled
+    var position = topWindow / windowHeight;
+    //invert the percentage
+    position = 1 - position;
+
+    //define arrow opacity as based on how far up the page the user has scrolled
+    //no scrolling = 1, half-way up the page = 0
+    $(".scroll__down").css("opacity", position);
+    if (position < 0) {
+      $(".intro__line").css({ opacity: 1, height: "4rem" });
+    } else {
+      $(".intro__line").css({ opacity: 0, height: "0rem" });
+    }
+  });
+
   return (
     <section
       id="home"
@@ -142,9 +170,17 @@ export default function Intro() {
         transition={{
           delay: 0.1,
         }}
+        className="into__btn"
       >
         <div className="btn-row">
-          <Link href="#contact" className="btn">
+          <Link
+            to="contact"
+            spy={true}
+            smooth={true}
+            duration={2000}
+            offset={-100}
+            className="btn"
+          >
             Contact me here <BsArrowRight className="btn-icon" />
           </Link>
 
@@ -168,6 +204,28 @@ export default function Intro() {
           </a>
         </div>
       </motion.div>
+
+      <motion.div
+        className="scroll__down"
+        initial={{ opacity: 0, x: "-50%" }}
+        animate={{ opacity: 1, x: "-50%" }}
+        transition={{
+          delay: 0.1,
+        }}
+      >
+        <Link
+          to="about"
+          spy={true}
+          smooth="easeOutQuad"
+          duration={2000}
+          offset={-100}
+        >
+          <span></span>
+          <span></span>
+          <span></span>Scroll
+        </Link>
+      </motion.div>
+      <div className="intro__line"></div>
     </section>
   );
 }

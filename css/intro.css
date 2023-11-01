@@ -1,5 +1,5 @@
 .intro__section {
-  @apply mt-[150px];
+  @apply pt-[130px] relative min-h-[100vh] pb-[180px];
 }
 
 .intro__section .profile {
@@ -16,6 +16,29 @@
 .intro__section .profile__icon:hover {
   animation: none;
   -webkit-animation: none;
+}
+@-webkit-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+    -webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-15px);
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -o-transform: translateY(-15px);
+  }
 }
 @keyframes bounce {
   0%,
@@ -59,6 +82,7 @@
   top: 0;
   left: 0;
   border-radius: 50%;
+  -webkit-animation: anim-btn 2s linear infinite;
   animation: anim-btn 2s linear infinite;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
@@ -66,7 +90,24 @@
   -o-transform: scale(1);
 }
 .intro__section .profile__icon .speaker__bar.show::after {
+  -webkit-animation-delay: 1s;
   animation-delay: 1s;
+}
+@-webkit-keyframes anim-btn {
+  from {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+  }
+  to {
+    transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -ms-transform: scale(1.8);
+    -o-transform: scale(1.8);
+  }
 }
 @keyframes anim-btn {
   from {
@@ -107,6 +148,22 @@
 .profile__wrapper .wrapper .profile-border #profile-circle {
   animation: rotation 8s -3s linear infinite;
   -webkit-animation: rotation 8s -3s linear infinite;
+}
+@-webkit-keyframes rotation {
+  from {
+    transform: rotate(0deg) translate(-95px) rotate(0deg);
+    -webkit-transform: rotate(0deg) translate(-95px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(-95px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(-95px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(-95px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translate(-95px) rotate(-360deg);
+    -webkit-transform: rotate(360deg) translate(-95px) rotate(-360deg);
+    -moz-transform: rotate(360deg) translate(-95px) rotate(-360deg);
+    -ms-transform: rotate(360deg) translate(-95px) rotate(-360deg);
+    -o-transform: rotate(360deg) translate(-95px) rotate(-360deg);
+  }
 }
 @keyframes rotation {
   from {
@@ -151,6 +208,9 @@
 }
 .intro__section .type__writer.hide {
   opacity: 0;
+}
+.into__btn {
+  @apply mb-5;
 }
 /* .intro__section h1 {
   background: var(--linear-heading);
@@ -221,3 +281,95 @@
   left: 43px;
   animation-duration: 458ms;
 } */
+.scroll__down,
+.intro__line {
+  @apply text-center absolute left-[50%] bottom-0;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -ms-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+}
+.scroll__down a {
+  @apply bottom-[40px] z-10 inline-block relative pt-[70px] cursor-pointer;
+  transform: translate(0, -50%);
+  color: var(--body-color);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+}
+.scroll__down a:hover {
+  opacity: 0.5;
+}
+
+.scroll__down a span {
+  @apply absolute top-0 left-[50%] w-[24px] h-[24px] -ml-[12px];
+  border-left: 1px solid var(--body-color);
+  border-bottom: 1px solid var(--body-color);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+.scroll__down a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+.scroll__down a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+}
+.scroll__down a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 640px) {
+  .scroll__down a {
+    @apply bottom-0;
+  }
+}
+.intro__line {
+  @apply w-[0.25rem] bottom-[70px] rounded-full;
+  background: var(--light-line);
+  opacity: 0;
+  height: 0;
+  transition: all 1s linear;
+  -webkit-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  -ms-transition: all 1s linear;
+  -o-transition: all 1s linear;
+}
