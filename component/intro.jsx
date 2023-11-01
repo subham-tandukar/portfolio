@@ -29,30 +29,25 @@ export default function Intro() {
     }
   }, [load]);
 
-  //this is where we apply opacity to the arrow
-  $(window).scroll(function () {
-    //get scroll position
-    var topWindow = $(window).scrollTop();
-    //multipl by 2.5 so the arrow will become transparent half-way up the page
-    var topWindow = topWindow * 3;
+  const [opacity, setOpacity] = useState(1);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const myWindow = window.scrollY;
+      const topWindow = myWindow * 3;
+      const windowHeight = window.innerHeight;
+      const position = topWindow / windowHeight;
+      const calculatedOpacity = 1 - position;
 
-    //get height of window
-    var windowHeight = $(window).height();
+      setOpacity(calculatedOpacity);
+    };
 
-    //set position as percentage of how far the user has scrolled
-    var position = topWindow / windowHeight;
-    //invert the percentage
-    position = 1 - position;
+    window.addEventListener("scroll", handleScroll);
 
-    //define arrow opacity as based on how far up the page the user has scrolled
-    //no scrolling = 1, half-way up the page = 0
-    $(".scroll__down").css("opacity", position);
-    if (position < 0) {
-      $(".intro__line").css({ opacity: 1, height: "4rem" });
-    } else {
-      $(".intro__line").css({ opacity: 0, height: "0rem" });
-    }
-  });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <section
@@ -207,11 +202,12 @@ export default function Intro() {
 
       <motion.div
         className="scroll__down"
-        initial={{ opacity: 0, x: "-50%" }}
-        animate={{ opacity: 1, x: "-50%" }}
-        transition={{
-          delay: 0.1,
-        }}
+        style={{ opacity: opacity }}
+        // initial={{ opacity: 0, x: "-50%" }}
+        // animate={{ opacity: 1, x: "-50%" }}
+        // transition={{
+        //   delay: 0.1,
+        // }}
       >
         <Link
           to="about"
@@ -225,7 +221,13 @@ export default function Intro() {
           <span></span>Scroll
         </Link>
       </motion.div>
-      <div className="intro__line"></div>
+      <div
+        className="intro__line"
+        style={{
+          opacity: opacity < 0 ? "1" : opacity,
+          height: opacity < 0 ? "4rem" : "0rem",
+        }}
+      ></div>
     </section>
   );
 }
