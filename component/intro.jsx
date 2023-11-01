@@ -30,24 +30,8 @@ export default function Intro() {
   }, [load]);
 
   const [opacity, setOpacity] = useState(1);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      const myWindow = window.scrollY;
-      const topWindow = myWindow * 3;
-      const windowHeight = window.innerHeight;
-      const position = topWindow / windowHeight;
-      const calculatedOpacity = 1 - position;
 
-      setOpacity(calculatedOpacity);
-    };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <section
@@ -199,27 +183,27 @@ export default function Intro() {
           </a>
         </div>
       </motion.div>
-
       <motion.div
-        className="scroll__down"
-        style={{ opacity: opacity }}
-        // initial={{ opacity: 0, x: "-50%" }}
-        // animate={{ opacity: 1, x: "-50%" }}
-        // transition={{
-        //   delay: 0.1,
-        // }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          type: "tween",
+          duration: 0.2,
+        }}
       >
-        <Link
-          to="about"
-          spy={true}
-          smooth="easeOutQuad"
-          duration={2000}
-          offset={-100}
-        >
-          <span></span>
-          <span></span>
-          <span></span>Scroll
-        </Link>
+        <div className="scroll__down" style={{ opacity: opacity }}>
+          <Link
+            to="about"
+            spy={true}
+            smooth="easeOutQuad"
+            duration={2000}
+            offset={-100}
+          >
+            <span></span>
+            <span></span>
+            <span></span>Scroll
+          </Link>
+        </div>
       </motion.div>
       <div
         className="intro__line"
