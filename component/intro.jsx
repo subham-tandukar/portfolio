@@ -31,7 +31,24 @@ export default function Intro() {
 
   const [opacity, setOpacity] = useState(1);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const myWindow = window.scrollY;
+      const topWindow = myWindow * 4;
+      const windowHeight = window.innerHeight;
+      const position = topWindow / windowHeight;
+      const calculatedOpacity = 1 - position;
 
+      setOpacity(calculatedOpacity);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Initial scrollspy setup
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [opacity]);
 
   return (
     <section
