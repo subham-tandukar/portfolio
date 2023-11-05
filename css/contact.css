@@ -1,5 +1,5 @@
 .contact__section {
-  @apply max-w-[42rem];
+  @apply max-w-[42rem] pb-[150px];
 }
 .contact__txt {
   @apply text-lg mb-4;
@@ -16,6 +16,13 @@ textarea {
   background-color: var(--card-bg);
 }
 .spinner {
-  @apply h-5 w-5 animate-spin rounded-full border-b-2 border-white;
+  @apply h-5 w-5 animate-spin rounded-full border-b-2;
+  border-color: var(--nav-bg);
+}
+.submit-btn {
+  @apply min-w-[120px] flex justify-center items-center my-[2px];
+}
+.submit-btn svg {
+  @apply ml-1;
 }
 /* form */

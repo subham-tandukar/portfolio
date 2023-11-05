@@ -11,7 +11,7 @@ export default function Contact() {
   return (
     <motion.section
       id="contact"
-      className="mySection my__container section-b contact__section"
+      className="mySection my__container  contact__section"
       initial={{
         opacity: 0,
       }}
