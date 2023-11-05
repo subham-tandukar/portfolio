@@ -1,0 +1,47 @@
+.project__wrapper {
+  @apply mb-3 sm:mb-8 last:mb-0 max-w-[42rem] mr-auto ml-auto;
+}
+
+.project__wrapper .project__card {
+  @apply block  mx-auto border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative transition;
+  background-color: var(--card-bg);
+}
+.project__wrapper:nth-of-type(even) .project__card {
+  @apply sm:pl-8;
+}
+.project__wrapper .project__card:hover {
+  background-color: var(--card-bg-hover);
+}
+.project__wrapper .project__card .content {
+  @apply pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full;
+}
+.project__wrapper .project__card .content h3 {
+  @apply text-2xl font-semibold;
+}
+
+.project__wrapper .project__card .content p {
+  @apply mt-2 leading-relaxed text-sm;
+}
+.project__wrapper .project__card .content ul {
+  @apply flex flex-wrap mt-4 gap-2 sm:mt-10;
+}
+.project__wrapper .project__card .content ul li {
+  @apply bg-white/[0.2] px-3 py-2 text-[0.7rem] uppercase tracking-wider text-white rounded-full flex justify-center items-center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.project__wrapper .project__card .project__img {
+  @apply absolute hidden sm:block top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl transition;
+}
+.project__wrapper:nth-of-type(even) .project__img {
+  @apply -left-40 right-[initial];
+}
+.project__wrapper:nth-of-type(even) .content {
+  @apply sm:ml-[18rem];
+}
+.project__wrapper:hover .project__img {
+  @apply scale-[1.04] -translate-x-3 translate-y-3 -rotate-2;
+}
+.project__wrapper:nth-of-type(even):hover .project__img {
+  @apply translate-x-3 translate-y-3 rotate-2;
+}

@@ -3,33 +3,46 @@
 import React from "react";
 import SectionHeading from "./section-heading";
 import { skillsData } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
 import { motion } from "framer-motion";
-
-// const fadeInAnimationVariants = {
-//   initial: {
-//     opacity: 0,
-//     y: 100,
-//   },
-//   animate: (index: number) => ({
-//     opacity: 1,
-//     y: 0,
-//     transition: {
-//       delay: 0.05 * index,
-//     },
-//   }),
-// };
+import "@/css/skill.css";
 
 export default function Skills() {
   return (
-    <section id="skills" className="mySection">
-      {/* <SectionHeading>My skills</SectionHeading>
-      <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
+    <motion.section
+      initial={{
+        opacity: 0,
+      }}
+      whileInView={{
+        opacity: 1,
+      }}
+      transition={{
+        duration: 1,
+      }}
+      viewport={{
+        once: true,
+      }}
+      id="skills"
+      className="mySection my__container section-b skill__section"
+    >
+      <SectionHeading subTitle="Skills" title="My Skills and Abilities" />
+      <ul className="skill__wrapper">
         {skillsData.map((skill, index) => (
           <motion.li
-            className="bg-white borderBlack rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80 text-sm"
+            className="skill__card"
             key={index}
-            // variants={fadeInAnimationVariants}
+            variants={{
+              initial: {
+                opacity: 0,
+                y: 100,
+              },
+              animate: (index) => ({
+                opacity: 1,
+                y: 0,
+                transition: {
+                  delay: 0.05 * index,
+                },
+              }),
+            }}
             initial="initial"
             whileInView="animate"
             viewport={{
@@ -40,9 +53,7 @@ export default function Skills() {
             {skill}
           </motion.li>
         ))}
-      </ul> */}
-
-      <SectionHeading title="Skills" />
-    </section>
+      </ul>
+    </motion.section>
   );
 }

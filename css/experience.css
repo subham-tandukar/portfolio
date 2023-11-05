@@ -1,0 +1,18 @@
+.exp__head {
+  @apply flex gap-4 items-center mb-5 flex-wrap;
+}
+.exp__img {
+  @apply bg-white p-2;
+}
+.exp__head__title {
+  @apply font-semibold capitalize;
+}
+.exp__location {
+  @apply font-normal !m-0 !text-sm;
+}
+.exp__title {
+  @apply font-semibold capitalize;
+}
+.exp__desc {
+  @apply !mt-1 !leading-relaxed !text-sm ;
+}

@@ -2,8 +2,9 @@ import React from "react";
 
 const SectionHeading = (props) => {
   return (
-    <div className="heading">
-      <h1>{props.title}</h1>
+    <div className="my__heading">
+      <span className="sub__heading">{props.subTitle}</span>
+      <h1 className="heading">{props.title}</h1>
       <div class="heading-line"></div>
     </div>
   );

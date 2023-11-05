@@ -3,7 +3,7 @@ import Contact from "@/component/contact";
 import Experience from "@/component/experience";
 import Intro from "@/component/intro";
 import Projects from "@/component/projects";
-import SectionDivider from "@/component/section-divider";
+import ScrollDown from "@/component/scroll-down";
 import Skill from "@/component/skill";
 import React from "react";
 
@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <main>
       <Intro />
-      {/* <SectionDivider /> */}
+      <ScrollDown />
       <About />
       <Projects />
       <Skill />

@@ -1,0 +1,11 @@
+.skill__section {
+  @apply max-w-[53rem] text-center;
+}
+.skill__wrapper {
+  @apply flex flex-wrap justify-center gap-2 text-lg;
+}
+.skill__card {
+  @apply border border-black/5 rounded-xl px-5 py-3 text-sm;
+  background-color: var(--card-bg);
+}
+

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
 import { BsArrowRight, BsGithub } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { BiLogoLinkedin } from "react-icons/bi";
@@ -11,7 +10,7 @@ import { PiSpeakerSimpleHighFill } from "react-icons/pi";
 import "@/css/intro.css";
 import profile from "@/public/images/profile.png";
 import Speech from "react-text-to-speech";
-import $ from "jquery";
+import Link from "next/link";
 
 export default function Intro() {
   const speakRef = useRef();
@@ -28,28 +27,6 @@ export default function Intro() {
       textToSpeakRef.current = speakRef.current.textContent;
     }
   }, [load]);
-
-  const [opacity, setOpacity] = useState(1);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const myWindow = window.scrollY;
-      const topWindow = myWindow * 4;
-      const windowHeight = window.innerHeight;
-      const position = topWindow / windowHeight;
-      const calculatedOpacity = 1 - position;
-
-      setOpacity(calculatedOpacity);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    // Initial scrollspy setup
-    handleScroll();
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [opacity]);
-
   return (
     <section
       id="home"
@@ -132,7 +109,7 @@ export default function Intro() {
                 cy="50%"
                 r="95px"
                 fill="none"
-                stroke="var(--line-color)"
+                stroke="var(--heading-line-color)"
                 strokeWidth="3px"
               />
 
@@ -169,14 +146,7 @@ export default function Intro() {
         className="into__btn"
       >
         <div className="btn-row">
-          <Link
-            to="contact"
-            spy={true}
-            smooth={true}
-            duration={2000}
-            offset={-100}
-            className="btn"
-          >
+          <Link href="#contact" className="btn">
             Contact me here <BsArrowRight className="btn-icon" />
           </Link>
 
@@ -200,35 +170,6 @@ export default function Intro() {
           </a>
         </div>
       </motion.div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          type: "tween",
-          duration: 0.2,
-        }}
-      >
-        <div className="scroll__down" style={{ opacity: opacity }}>
-          <Link
-            to="about"
-            spy={true}
-            smooth="easeOutQuad"
-            duration={2000}
-            offset={-100}
-          >
-            <span></span>
-            <span></span>
-            <span></span>Scroll
-          </Link>
-        </div>
-      </motion.div>
-      <div
-        className="intro__line"
-        style={{
-          opacity: opacity < 0 ? "1" : opacity,
-          height: opacity < 0 ? "4rem" : "0rem",
-        }}
-      ></div>
     </section>
   );
 }

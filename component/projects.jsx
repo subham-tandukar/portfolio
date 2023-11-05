@@ -4,21 +4,35 @@ import React from "react";
 import SectionHeading from "./section-heading";
 import { projectsData } from "@/lib/data";
 import Project from "./project";
-import { useSectionInView } from "@/lib/hooks";
+import "@/css/project.css";
+import { motion } from "framer-motion";
 
 export default function Projects() {
   return (
-    <section id="projects" className="mySection">
-      {/* <SectionHeading>My projects</SectionHeading>
+    <motion.section
+      id="projects"
+      className="mySection my__container project__section section-b"
+      initial={{
+        opacity: 0,
+      }}
+      whileInView={{
+        opacity: 1,
+      }}
+      transition={{
+        duration: 1,
+      }}
+      viewport={{
+        once: true,
+      }}
+    >
+      <SectionHeading title="Project I worked on" subTitle="Projects" />
       <div>
         {projectsData.map((project, index) => (
           <React.Fragment key={index}>
             <Project {...project} />
           </React.Fragment>
         ))}
-      </div> */}
-
-      <SectionHeading title="Projects" />
-    </section>
+      </div>
+    </motion.section>
   );
 }

@@ -18,11 +18,13 @@ html {
 }
 
 html {
-  --line-color: var(--primary-color);
+  --line-color: #e5e7eb;
+  --heading-line-color: var(--primary-color);
   --line-dot-color: #1940aa;
   --light-line: rgba(0, 0, 0, 0.1);
   --body-bg: #f9fafb;
   --body-color: #333;
+  --text-color: #374151;
   --top-nav-bg: rgba(255, 255, 255, 0.7);
   --nav-bg: #e2e2e3;
   --nav-link-bg: rgba(3, 34, 143, 0.08);
@@ -38,14 +40,18 @@ html {
   --btn-txt: #fff;
   --outline-btn-txt: #333;
   --drop-shadow: 0 15px 35px var(--shadow);
+  --card-bg: rgb(243 244 246);
+  --card-bg-hover: rgb(229 231 235);
 }
 
 html.dark {
-  --line-color: rgba(255, 255, 255, 0.5);
+  --line-color: rgba(255, 255, 255, 0.2);
+  --heading-line-color: rgba(255, 255, 255, 0.5);
   --line-dot-color: #e5e7eb;
   --light-line: rgba(255, 255, 255, 0.2);
   --body-bg: #111827;
   --body-color: rgba(249, 250, 251, 1);
+  --text-color: rgba(255, 255, 255, 0.7);
   --top-nav-bg: rgba(3, 7, 18, 0.75);
   --nav-bg: #060b17;
   --nav-link-bg: rgba(249, 250, 251, 0.05);
@@ -57,6 +63,8 @@ html.dark {
   --btn-txt: #333;
   --outline-btn-txt: #fff;
   --drop-shadow: 0 37px -1px var(--shadow);
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --card-bg-hover: rgba(255, 255, 255, 0.2);
 }
 
 * {
@@ -79,6 +87,9 @@ h6 {
   font-family: var(--primary-font);
   @apply font-bold;
 }
+p {
+  color: var(--text-color);
+}
 .my__container {
   @apply mx-auto px-10;
   max-width: 1200px;
@@ -88,25 +99,44 @@ h6 {
 }
 
 .mySection {
-  min-height: 100vh;
-  /* display: flex;
-  justify-content: center; */
-  /* align-items:center; */
   scroll-margin-top: 6rem;
 }
-
-.heading h1 {
-  @apply font-bold text-6xl pb-1 text-center;
+.mySections {
+  min-height: 100vh;
+  scroll-margin-top: 6rem;
 }
-.heading .heading-line {
+.section {
+  @apply py-[100px];
+}
+
+.section-t {
+  @apply pt-[100px];
+}
+.section-b {
+  @apply pb-[100px];
+}
+.heading {
+  @apply font-bold text-4xl pb-1 text-center;
+}
+.sub__heading {
+  @apply mb-4 block text-base font-normal uppercase text-center;
+  background: var(--linear);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.my__heading {
+  @apply mb-10;
+}
+.heading-line {
   position: relative;
-  background-color: var(--line-color);
+  background-color: var(--heading-line-color);
   height: 5px;
   width: 90px;
   border-radius: 30px;
   margin: 20px auto;
 }
-.heading .heading-line:before {
+.heading-line:before {
   background-color: var(--line-dot-color);
   content: "";
   position: absolute;

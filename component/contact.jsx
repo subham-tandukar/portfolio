@@ -39,7 +39,7 @@ export default function Contact() {
   return (
     <motion.section
       id="contact"
-      className="mySection"
+      className="mySection my__container section-b contact__section"
       initial={{
         opacity: 0,
       }}
@@ -112,7 +112,7 @@ export default function Contact() {
     </button>
       </form> */}
 
-      <SectionHeading title="Contact" />
+      <SectionHeading subTitle="Contact" title="Send me a message" />
     </motion.section>
   );
 }
