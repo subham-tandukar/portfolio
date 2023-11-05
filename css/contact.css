@@ -1,0 +1,21 @@
+.contact__section {
+  @apply max-w-[42rem];
+}
+.contact__txt {
+  @apply text-lg mb-4;
+}
+
+/* form */
+form {
+  @apply flex flex-col gap-5;
+  color: var(--text-color);
+}
+input,
+textarea {
+  @apply border border-black/5 rounded-xl px-5 py-3 text-sm;
+  background-color: var(--card-bg);
+}
+.spinner {
+  @apply h-5 w-5 animate-spin rounded-full border-b-2 border-white;
+}
+/* form */
