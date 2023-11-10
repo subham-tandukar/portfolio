@@ -6,6 +6,7 @@ import { ThemeContextProvider } from "@/context/theme-context";
 import { Raleway, Comic_Neue } from "next/font/google";
 import { metadata } from "./metatag";
 import TopHeader from "@/component/top-header";
+import Popup from "@/component/pop-up";
 
 const primary = Raleway({ weight: ["300", "400", "700"], subsets: ["latin"] });
 const secondary = Comic_Neue({
@@ -32,6 +33,7 @@ const RootLayout = ({ children }) => {
           <ActiveSectionContextProvider>
             <TopHeader />
             <Header />
+            <Popup />
             <div className="my__container">{children}</div>
           </ActiveSectionContextProvider>
         </ThemeContextProvider>

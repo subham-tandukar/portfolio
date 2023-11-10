@@ -7,13 +7,12 @@ import { Hr } from "@react-email/hr";
 import { Preview } from "@react-email/preview";
 import { Section } from "@react-email/section";
 import { Text } from "@react-email/text";
-// import { Tailwind } from "@react-email/tailwind";
 
-export default function ContactFormEmail({ message, senderEmail, senderName }) {
+export default function ReplyContactForm() {
   return (
     <Html>
       <Head />
-      <Preview>New message from your portfolio site</Preview>
+      <Preview>Thank you for contacting me</Preview>
 
       <Body style={{ background: "#f3f4f6", color: "#000" }}>
         <Section
@@ -30,12 +29,14 @@ export default function ContactFormEmail({ message, senderEmail, senderName }) {
           }}
         >
           <Heading style={{ lineHeight: "1.25", fontSize: "20px" }}>
-            You received the following message from the contact form
+            Thank You for Contacting Me
           </Heading>
-          <Text>{message}</Text>
+          <Text>
+            I have received your message and I'll get back to you as soon as
+            possible.
+          </Text>
           <Hr />
-          <Text>The sender's name is: {senderName}</Text>
-          <Text>The sender's email is: {senderEmail}</Text>
+          <Text>If you have any further questions, feel free to mail me.</Text>
         </Section>
       </Body>
     </Html>

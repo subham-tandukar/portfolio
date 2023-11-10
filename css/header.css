@@ -92,7 +92,8 @@ header nav ul li a.nav-active::after,header nav ul li a.nav-active:hover::after 
   background: var(--top-nav-bg);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.03),
     0 4px 6px -4px rgb(0 0 0 / 0.03);
-  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
   @apply py-3 fixed top-0 z-[1000] w-full;
 }
 .top__header {
@@ -101,7 +102,7 @@ header nav ul li a.nav-active::after,header nav ul li a.nav-active:hover::after 
 
 header {
   position: fixed;
-  z-index: 10000;
+  z-index: 1000;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
@@ -297,7 +298,8 @@ header .arrow svg {
     background: var(--top-nav-bg);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.03),
       0 4px 6px -4px rgb(0 0 0 / 0.03);
-    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
   }
   header nav {
     width: 100%;
@@ -350,6 +352,8 @@ header .arrow svg {
   }
 
   header nav a {
+    width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
   }
   header nav a .icon,

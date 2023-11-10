@@ -1,13 +1,16 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { useRef } from "react";
 import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
-import { sendEmail } from "@/actions/sendEmail";
+import { replyToUser, sendEmail } from "@/actions/sendEmail";
 import SubmitBtn from "./submit-btn";
 import "@/css/contact.css";
+import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Contact() {
+  const { setIsPlaying, setIsError, setMsg } = useActiveSectionContext();
+  const formRef = useRef(null); // Create a ref for the form element
   return (
     <motion.section
       id="contact"
@@ -36,18 +39,36 @@ export default function Contact() {
       </p>
 
       <form
+        ref={formRef} // Attach the form ref to the form element
         action={async (formData) => {
           const { data, error } = await sendEmail(formData);
-
+          setIsPlaying(true);
           if (error) {
-            // toast.error(error);
-            console.log("error", error);
+            setIsError(true);
+            setMsg(error);
             return;
+          } else {
+            setIsError(false);
+            setMsg("");
+            // Reset the form values
+            formRef.current.reset();
+            // Call replyToUser to send a reply email
+            // const { data, error } = await replyToUser(formData);
+            // if (error) {
+            //   console.log("error", error);
+            // } else {
+            //   console.log("success", data);
+            // }
           }
-          console.log("success", data);
-          // toast.success("Email sent successfully!");
         }}
       >
+        <input
+          name="senderName"
+          type="text"
+          required
+          maxLength={500}
+          placeholder="Your Name"
+        />
         <input
           name="senderEmail"
           type="email"

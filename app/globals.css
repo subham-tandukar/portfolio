@@ -42,6 +42,9 @@ html {
   --drop-shadow: 0 15px 35px var(--shadow);
   --card-bg: rgb(243 244 246);
   --card-bg-hover: rgb(229 231 235);
+  --popup-bg: rgba(0, 0, 0, 0.5);
+  --popup-modal: rgb(255 255 255);
+  --popup-close: rgb(229 231 235);
 }
 
 html.dark {
@@ -65,6 +68,9 @@ html.dark {
   --drop-shadow: 0 37px -1px var(--shadow);
   --card-bg: rgba(255, 255, 255, 0.1);
   --card-bg-hover: rgba(255, 255, 255, 0.2);
+  --popup-bg: rgba(17, 24, 39, 0.8);
+  --popup-modal: #374151;
+  --popup-close: rgb(75 85 99);
 }
 
 * {
@@ -97,7 +103,9 @@ p {
 .my__container-small {
   max-width: 900px;
 }
-
+.hide-scroll {
+  overflow-y: hidden;
+}
 .mySection {
   scroll-margin-top: 6rem;
 }
@@ -106,14 +114,14 @@ p {
   scroll-margin-top: 6rem;
 }
 .section {
-  @apply py-[100px];
+  @apply py-[80px];
 }
 
 .section-t {
-  @apply pt-[100px];
+  @apply pt-[80px];
 }
 .section-b {
-  @apply pb-[100px];
+  @apply pb-[80px];
 }
 .heading {
   @apply font-bold text-4xl pb-1 text-center;
@@ -155,6 +163,16 @@ p {
   -webkit-animation-direction: alternate-reverse;
   -webkit-animation-name: watermark-animate;
   animation-name: watermark-animate;
+}
+
+@-webkit-keyframes watermark-animate {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 @keyframes watermark-animate {
@@ -261,7 +279,26 @@ p {
   background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
     10% 10%, 18% 18%;
   background-position: 50% 120%;
-  animation: greentopBubbles 0.6s ease;
+  -webkit-animation: greentopBubbles 0.6s ease;
+          animation: greentopBubbles 0.6s ease;
+}
+
+@-webkit-keyframes greentopBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+      40% 90%, 55% 90%, 70% 90%;
+  }
+
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+      50% 50%, 65% 20%, 90% 30%;
+  }
+
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+      50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
 }
 
 @keyframes greentopBubbles {
@@ -302,7 +339,26 @@ p {
     radial-gradient(circle, var(--hover-txt) 20%, transparent 20%);
   background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
   background-position: 50% 0%;
-  animation: bottomBubbles 0.6s ease;
+  -webkit-animation: bottomBubbles 0.6s ease;
+          animation: bottomBubbles 0.6s ease;
+}
+
+@-webkit-keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+      70% -10%, 70% 0%;
+  }
+
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+      105% 0%;
+  }
+
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+      110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
 }
 
 @keyframes bottomBubbles {
@@ -384,14 +440,8 @@ html.dark .btn-bg svg {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out,
-    transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
-  -moz-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out,
-    transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
   transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out,
     transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   pointer-events: none;
   -ms-transform: translate3d(0, 0, 0);
@@ -429,6 +479,8 @@ html.dark .btn-bg svg {
 [data-tooltip]:after {
   z-index: 1000;
   padding: 6px 8px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   background-color: #000;
   background-color: hsla(0, 0%, 20%, 0.9);
@@ -478,15 +530,3 @@ html.dark .btn-bg svg {
 }
 
 /* tooltip */
-
-/* email */
-.email__body {
-  @apply bg-gray-100 text-black;
-}
-.email__section {
-  @apply bg-white border border-black/10 my-10 px-10 py-4 rounded-md;
-}
-.email__heading {
-  @apply leading-tight;
-}
-/* email */

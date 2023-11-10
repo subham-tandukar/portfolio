@@ -1,0 +1,284 @@
+.popup__bg {
+  @apply fixed top-0 left-0 h-[100vh] w-full z-[1000] opacity-0;
+  visibility: hidden;
+  background: var(--popup-bg);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+.popup__bg.active {
+  visibility: visible;
+  opacity: 1;
+}
+.popup__modal {
+  @apply absolute text-center top-[50%] transition-all left-[50%] sm:w-[300px] w-[90%] p-7 rounded-xl;
+  transform: translate(-50%, -50%) scale(0);
+  background: var(--popup-modal);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  -o-transform: translate(-50%, -50%) scale(0);
+  transition: var(--transition);
+}
+.popup__modal.active {
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  -o-transform: translate(-50%, -50%) scale(1);
+}
+.popup__modal h1 {
+  @apply text-2xl;
+}
+.success-animation {
+  margin: 10px 0;
+}
+.checkmark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #4bb71b;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px #4bb71b;
+  margin: 0 auto;
+}
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  fill: var(--popup-modal);
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+}
+.success-animation.active .checkmark {
+  animation: fill 0.4s ease-in-out 0.9s forwards,
+    scale 0.3s ease-in-out 1.4s both;
+  -webkit-animation: fill 0.4s ease-in-out 0.9s forwards,
+    scale 0.3s ease-in-out 1.4s both;
+}
+.success-animation.active .checkmark__circle {
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+  -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+}
+.success-animation.active .checkmark__check {
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+  -webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+}
+@-webkit-keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes scale {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes scale {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@-webkit-keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #4bb71b;
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #4bb71b;
+  }
+}
+
+/*  */
+svg.error line {
+  stroke: #ec2e2e;
+}
+svg.error line {
+  stroke-dashoffset: -50px;
+  stroke-dasharray: 50px;
+  transform-origin: center;
+  transform: scale(0);
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+}
+svg.error line.left {
+  
+  transition: stroke-dashoffset 620ms linear 0ms;
+  -webkit-transition: stroke-dashoffset 620ms linear 0ms;
+  -moz-transition: stroke-dashoffset 620ms linear 0ms;
+  -ms-transition: stroke-dashoffset 620ms linear 0ms;
+  -o-transition: stroke-dashoffset 620ms linear 0ms;
+}
+svg.error line.right {
+  transition: stroke-dashoffset 620ms linear 160ms;
+  -webkit-transition: stroke-dashoffset 620ms linear 160ms;
+  -moz-transition: stroke-dashoffset 620ms linear 160ms;
+  -ms-transition: stroke-dashoffset 620ms linear 160ms;
+  -o-transition: stroke-dashoffset 620ms linear 160ms;
+}
+svg.error.toggle line.left {
+  stroke-dashoffset: 0;
+  animation: left 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+  -webkit-animation: left 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+}
+svg.error.toggle line.right {
+  animation: right 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+  stroke-dashoffset: 0;
+  -webkit-animation: right 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1.3s forwards;
+}
+
+@-webkit-keyframes left {
+  from {
+    transition: stroke-dashoffset 620ms linear 0ms;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transition: stroke-dashoffset 620ms linear 0ms;
+    -moz-transition: stroke-dashoffset 620ms linear 0ms;
+    -ms-transition: stroke-dashoffset 620ms linear 0ms;
+    -o-transition: stroke-dashoffset 620ms linear 0ms;
+}
+  to{
+    transform: scale(1);
+    transition: stroke-dashoffset 620ms linear 1000ms;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition: stroke-dashoffset 620ms linear 1000ms;
+    -moz-transition: stroke-dashoffset 620ms linear 1000ms;
+    -ms-transition: stroke-dashoffset 620ms linear 1000ms;
+    -o-transition: stroke-dashoffset 620ms linear 1000ms;
+}
+}
+
+@keyframes left {
+  from {
+    transition: stroke-dashoffset 620ms linear 0ms;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transition: stroke-dashoffset 620ms linear 0ms;
+    -moz-transition: stroke-dashoffset 620ms linear 0ms;
+    -ms-transition: stroke-dashoffset 620ms linear 0ms;
+    -o-transition: stroke-dashoffset 620ms linear 0ms;
+}
+  to{
+    transform: scale(1);
+    transition: stroke-dashoffset 620ms linear 1000ms;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition: stroke-dashoffset 620ms linear 1000ms;
+    -moz-transition: stroke-dashoffset 620ms linear 1000ms;
+    -ms-transition: stroke-dashoffset 620ms linear 1000ms;
+    -o-transition: stroke-dashoffset 620ms linear 1000ms;
+}
+}
+@-webkit-keyframes right {
+  from {
+    transform: scale(0);
+    transform: translateX(100%);
+    transition: stroke-dashoffset 620ms linear 160ms;
+    -webkit-transition: stroke-dashoffset 620ms linear 160ms;
+    -moz-transition: stroke-dashoffset 620ms linear 160ms;
+    -ms-transition: stroke-dashoffset 620ms linear 160ms;
+    -o-transition: stroke-dashoffset 620ms linear 160ms;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+}
+  to{
+    transform: scale(1);
+    transition: stroke-dashoffset 620ms linear 1180ms;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition: stroke-dashoffset 620ms linear 1180ms;
+    -moz-transition: stroke-dashoffset 620ms linear 1180ms;
+    -ms-transition: stroke-dashoffset 620ms linear 1180ms;
+    -o-transition: stroke-dashoffset 620ms linear 1180ms;
+}
+}
+@keyframes right {
+  from {
+    transform: scale(0);
+    transform: translateX(100%);
+    transition: stroke-dashoffset 620ms linear 160ms;
+    -webkit-transition: stroke-dashoffset 620ms linear 160ms;
+    -moz-transition: stroke-dashoffset 620ms linear 160ms;
+    -ms-transition: stroke-dashoffset 620ms linear 160ms;
+    -o-transition: stroke-dashoffset 620ms linear 160ms;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+}
+  to{
+    transform: scale(1);
+    transition: stroke-dashoffset 620ms linear 1180ms;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition: stroke-dashoffset 620ms linear 1180ms;
+    -moz-transition: stroke-dashoffset 620ms linear 1180ms;
+    -ms-transition: stroke-dashoffset 620ms linear 1180ms;
+    -o-transition: stroke-dashoffset 620ms linear 1180ms;
+}
+}
+
+.close__popup {
+  @apply cursor-pointer absolute top-3 right-3;
+}
+
+.close__popup svg {
+  color: rgb(156 163 175);
+  @apply rounded-md p-1;
+}
+.close__popup:hover svg {
+  background: var(--popup-close);
+}
+
+/* countdown */
+.countdown__wrapper {
+  @apply mt-5;
+}
