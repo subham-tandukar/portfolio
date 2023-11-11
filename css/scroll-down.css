@@ -1,5 +1,5 @@
 .scroll__down {
-  @apply text-center -mt-[180px] mb-[70px] relative;
+  @apply text-center -mt-[180px] sm:mb-[70px] mb-[40px] relative;
   transition: all 0.5s linear;
   -webkit-transition: all 0.5s linear;
   -moz-transition: all 0.5s linear;

@@ -146,28 +146,33 @@ export default function Intro() {
         className="into__btn"
       >
         <div className="btn-row">
-          <Link href="#contact" className="btn">
-            Contact me here <BsArrowRight className="btn-icon" />
-          </Link>
+          <div>
+            <Link href="#contact" className="btn">
+              Contact me here <BsArrowRight className="btn-icon" />
+            </Link>
 
-          <a className="btn btn-outline" href="/CV.pdf" download>
-            Download CV <HiDownload className="btn-icon" />
-          </a>
-          <a
-            className="btn-bg linkedin"
-            href="https://www.linkedin.com/in/aniket-tandukar-7b9aaa180/"
-            target="_blank"
-          >
-            <BiLogoLinkedin />
-          </a>
+            <a className="btn btn-outline" href="./CV.pdf" download>
+              Download CV <HiDownload className="btn-icon" />
+            </a>
+          </div>
 
-          <a
-            className="btn-bg github"
-            href="https://github.com/subham-tandukar"
-            target="_blank"
-          >
-            <BsGithub />
-          </a>
+          <div>
+            <a
+              className="btn-bg linkedin"
+              href="https://www.linkedin.com/in/aniket-tandukar-7b9aaa180/"
+              target="_blank"
+            >
+              <BiLogoLinkedin />
+            </a>
+
+            <a
+              className="btn-bg github"
+              href="https://github.com/subham-tandukar"
+              target="_blank"
+            >
+              <BsGithub />
+            </a>
+          </div>
         </div>
       </motion.div>
     </section>

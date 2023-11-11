@@ -2,7 +2,7 @@
   @apply max-w-[42rem] pb-[150px];
 }
 .contact__txt {
-  @apply text-lg mb-4;
+  @apply sm:text-lg text-base mb-4;
 }
 
 /* form */
@@ -20,7 +20,7 @@ textarea {
   border-color: var(--nav-bg);
 }
 .submit-btn {
-  @apply min-w-[120px] flex justify-center items-center my-[2px];
+  @apply sm:min-w-[120px] text-base py-3 px-6 min-w-[max-content] flex justify-center items-center my-[2px];
 }
 .submit-btn svg {
   @apply ml-1;

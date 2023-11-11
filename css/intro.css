@@ -1,5 +1,5 @@
 .intro__section {
-  @apply pt-[130px] relative pb-[180px];
+  @apply sm:pt-[130px] pt-[100px] relative pb-[180px];
 }
 
 .intro__section .profile {
@@ -183,7 +183,7 @@
 }
 
 .intro__section h1 {
-  @apply mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl text-center;
+  @apply mb-10 mt-4 px-4 text-xl font-medium sm:!leading-[1.5] !leading-[1.8] sm:text-3xl text-center;
 }
 .intro__section h1 span {
   @apply font-bold;

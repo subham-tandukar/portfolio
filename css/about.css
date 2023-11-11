@@ -5,5 +5,5 @@
   @apply w-[500px] mx-auto lg:mt-[0] -mt-[30px];
 }
 .about__section .about__wrapper p {
-  @apply text-xl leading-9 ;
+  @apply sm:text-xl text-base leading-8 text-center sm:text-left sm:leading-9;
 }

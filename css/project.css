@@ -16,7 +16,7 @@
   @apply pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full;
 }
 .project__wrapper .project__card .content h3 {
-  @apply text-2xl font-semibold;
+  @apply sm:text-2xl text-lg font-semibold;
 }
 
 .project__wrapper .project__card .content p {

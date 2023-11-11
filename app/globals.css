@@ -114,27 +114,27 @@ p {
   scroll-margin-top: 6rem;
 }
 .section {
-  @apply py-[80px];
+  @apply sm:py-[80px] py-[60px];
 }
 
 .section-t {
-  @apply pt-[80px];
+  @apply sm:pt-[80px] pt-[60px];
 }
 .section-b {
-  @apply pb-[80px];
+  @apply sm:pb-[80px] pb-[60px];
 }
 .heading {
-  @apply font-bold text-4xl pb-1 text-center;
+  @apply font-bold sm:text-4xl text-2xl pb-1 text-center;
 }
 .sub__heading {
-  @apply mb-4 block text-base font-normal uppercase text-center;
+  @apply sm:mb-4 mb-2 block text-base font-normal uppercase text-center;
   background: var(--linear);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .my__heading {
-  @apply mb-10;
+  @apply sm:mb-10 mb-7;
 }
 .heading-line {
   position: relative;
@@ -233,7 +233,7 @@ p {
   -moz-transition: all 0.3s linear;
   -ms-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
-  @apply relative w-max py-3 px-5 rounded-full cursor-pointer font-semibold;
+  @apply relative sm:text-base text-xs w-max sm:py-3 py-[10px] sm:px-5 px-4 rounded-full cursor-pointer font-semibold;
 }
 .btn.btn-outline {
   background: transparent;
@@ -280,7 +280,7 @@ p {
     10% 10%, 18% 18%;
   background-position: 50% 120%;
   -webkit-animation: greentopBubbles 0.6s ease;
-          animation: greentopBubbles 0.6s ease;
+  animation: greentopBubbles 0.6s ease;
 }
 
 @-webkit-keyframes greentopBubbles {
@@ -340,7 +340,7 @@ p {
   background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
   background-position: 50% 0%;
   -webkit-animation: bottomBubbles 0.6s ease;
-          animation: bottomBubbles 0.6s ease;
+  animation: bottomBubbles 0.6s ease;
 }
 
 @-webkit-keyframes bottomBubbles {
@@ -379,13 +379,16 @@ p {
   }
 }
 .btn-row {
-  @apply flex gap-3 flex-wrap justify-center items-center;
+  @apply flex gap-3 flex-col sm:flex-row justify-center items-center;
+}
+.btn-row > div {
+  @apply flex gap-3  justify-center items-center;
 }
 .btn-icon {
   @apply inline-block align-middle;
 }
 .btn-bg {
-  @apply w-12 h-12 rounded-full flex items-center justify-center;
+  @apply sm:w-12 w-[2.5rem] sm:h-12 h-[2.5rem] rounded-full flex items-center justify-center;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
