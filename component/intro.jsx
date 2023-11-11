@@ -159,7 +159,7 @@ export default function Intro() {
           <div>
             <a
               className="btn-bg linkedin"
-              href="https://www.linkedin.com/in/aniket-tandukar-7b9aaa180/"
+              href="https://www.linkedin.com/in/subham-tandukar-7b9aaa180/"
               target="_blank"
             >
               <BiLogoLinkedin />
