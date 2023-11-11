@@ -233,7 +233,7 @@ p {
   -moz-transition: all 0.3s linear;
   -ms-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
-  @apply relative sm:text-base text-xs w-max sm:py-3 py-[10px] sm:px-5 px-4 rounded-full cursor-pointer font-semibold;
+  @apply relative sm:text-base text-sm w-max sm:py-3 py-[10px] sm:px-5 px-4 rounded-full cursor-pointer font-semibold;
 }
 .btn.btn-outline {
   background: transparent;
