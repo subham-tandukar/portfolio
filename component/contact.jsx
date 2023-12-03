@@ -35,7 +35,11 @@ export default function Contact() {
         <strong>
           <a href="mailto:subhamtndkr9@gmail.com">subhamtndkr9@gmail.com</a>{" "}
         </strong>{" "}
-        or through this form.
+        {/* or through this form. */}
+        or call me at
+        <strong>
+          <a href="tel:9869031285">9869031285</a>{" "}
+        </strong>{" "}
       </p>
 
       <form
