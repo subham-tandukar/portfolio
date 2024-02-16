@@ -34,7 +34,7 @@ const RootLayout = ({ children }) => {
             <TopHeader />
             <Header />
             <Popup />
-            <div className="my__container">{children}</div>
+            <div className="">{children}</div>
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>

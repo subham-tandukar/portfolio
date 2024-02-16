@@ -22,38 +22,40 @@ export default function Skills() {
         once: true,
       }}
       id="skills"
-      className="mySection my__container section-b skill__section"
+      className="mySection  section-b margin-b skill__section"
     >
-      <SectionHeading subTitle="Skills" title="My Skills and Abilities" />
-      <ul className="skill__wrapper">
-        {skillsData.map((skill, index) => (
-          <motion.li
-            className="skill__card"
-            key={index}
-            variants={{
-              initial: {
-                opacity: 0,
-                y: 100,
-              },
-              animate: (index) => ({
-                opacity: 1,
-                y: 0,
-                transition: {
-                  delay: 0.05 * index,
+      <div className="my__container">
+        <SectionHeading subTitle="Skills" title="My Skills and Abilities" />
+        <ul className="skill__wrapper">
+          {skillsData.map((skill, index) => (
+            <motion.li
+              className="skill__card"
+              key={index}
+              variants={{
+                initial: {
+                  opacity: 0,
+                  y: 100,
                 },
-              }),
-            }}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-            custom={index}
-          >
-            {skill}
-          </motion.li>
-        ))}
-      </ul>
+                animate: (index) => ({
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    delay: 0.05 * index,
+                  },
+                }),
+              }}
+              initial="initial"
+              whileInView="animate"
+              viewport={{
+                once: true,
+              }}
+              custom={index}
+            >
+              {skill}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
     </motion.section>
   );
 }

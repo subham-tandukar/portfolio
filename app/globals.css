@@ -45,6 +45,7 @@ html {
   --popup-bg: rgba(0, 0, 0, 0.5);
   --popup-modal: rgb(255 255 255);
   --popup-close: rgb(229 231 235);
+  --skill-bg:linear-gradient(180deg, #f9fafb 10%, rgba(255, 255, 255, 0.5));
 }
 
 html.dark {
@@ -71,6 +72,7 @@ html.dark {
   --popup-bg: rgba(17, 24, 39, 0.8);
   --popup-modal: #374151;
   --popup-close: rgb(75 85 99);
+  --skill-bg:linear-gradient(180deg, #111827 10%, rgba(0, 0, 0, 0.7));
 }
 
 * {
@@ -122,6 +124,16 @@ p {
 }
 .section-b {
   @apply sm:pb-[80px] pb-[60px];
+}
+.margin {
+  @apply sm:my-[80px] my-[60px];
+}
+
+.margin-t {
+  @apply sm:mt-[80px] mt-[60px];
+}
+.margin-b {
+  @apply sm:mb-[80px] mb-[60px];
 }
 .heading {
   @apply font-bold sm:text-4xl text-2xl pb-1 text-center;

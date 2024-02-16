@@ -1,11 +1,17 @@
 .skill__section {
-  @apply max-w-[53rem] text-center;
+  @apply h-[90vh] bg-fixed bg-cover bg-no-repeat text-center relative bg-[url('../public/images/coding.png')];
 }
 .skill__wrapper {
-  @apply flex flex-wrap justify-center gap-2 text-lg;
+  @apply max-w-[53rem] mx-auto flex flex-wrap justify-center gap-2 text-lg;
 }
 .skill__card {
   @apply border border-black/5 rounded-xl sm:px-5 px-4 sm:py-3 py-2 text-sm;
   background-color: var(--card-bg);
 }
-
+.skill__section::after {
+  @apply content-[''] absolute top-0 left-0 w-full h-full z-[1];
+  background: var(--skill-bg);
+}
+.skill__section .my__container {
+  @apply sticky top-[90px] z-10;
+}
