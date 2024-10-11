@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const Project = ({ title, description, tags, imageUrl, link }) => {
+const Project = ({ title, description, tags, imageUrl, link, index }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -18,8 +18,9 @@ const Project = ({ title, description, tags, imageUrl, link }) => {
       style={{
         scale: scaleProgess,
         opacity: opacityProgess,
+        top: `calc(100px + 0px) `,
       }}
-      className="project__wrapper "
+      className="project__wrapper sticky"
     >
       <a href={link} target="_blank" className="project__card">
         <div className="content">

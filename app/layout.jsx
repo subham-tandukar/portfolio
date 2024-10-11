@@ -1,12 +1,13 @@
 "use client";
-import Header from "@/component/header";
+import Header from "@/components/header";
 import "./globals.css";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import { ThemeContextProvider } from "@/context/theme-context";
 import { Raleway, Comic_Neue } from "next/font/google";
 import { metadata } from "./metatag";
-import TopHeader from "@/component/top-header";
-import Popup from "@/component/pop-up";
+import TopHeader from "@/components/top-header";
+import Popup from "@/components/pop-up";
+import grainImage from "@/public/images/grain.jpg";
 
 const primary = Raleway({ weight: ["300", "400", "700"], subsets: ["latin"] });
 const secondary = Comic_Neue({
@@ -28,7 +29,11 @@ const RootLayout = ({ children }) => {
           --primary-font: ${primary.style.fontFamily};
         }
       `}</style>
-      <body>
+      <body className="relative z-0">
+        <div
+          className="absolute inset-0 -z-30 opacity-5 "
+          style={{ backgroundImage: `url(${grainImage.src})` }}
+        ></div>
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
             <TopHeader />

@@ -1,5 +1,7 @@
 .skill__section {
   @apply h-[90vh] bg-fixed bg-cover bg-no-repeat text-center relative bg-[url('../public/images/coding.png')];
+  -webkit-mask-image: linear-gradient(to top,transparent,black 10%,black 70%,transparent);
+  mask-image: linear-gradient(to top,transparent,black 10%,black 70%,transparent);
 }
 .skill__wrapper {
   @apply max-w-[53rem] mx-auto flex flex-wrap justify-center gap-2 text-lg;

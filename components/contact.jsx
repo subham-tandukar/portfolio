@@ -31,7 +31,7 @@ export default function Contact() {
       <SectionHeading subTitle="Contact" title="Send me a message" />
 
       <p className="contact__txt">
-        Please contact me directly at{" "}
+        You can contact me directly at{" "}
         <strong>
           <a href="mailto:subhamtndkr9@gmail.com">subhamtndkr9@gmail.com</a>{" "}
         </strong>{" "}

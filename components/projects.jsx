@@ -11,7 +11,7 @@ export default function Projects() {
   return (
     <motion.section
       id="projects"
-      className="mySection my__container project__section section-b"
+      className="mySection my__container project__section section-t"
       initial={{
         opacity: 0,
       }}
@@ -29,7 +29,7 @@ export default function Projects() {
       <div>
         {projectsData.map((project, index) => (
           <React.Fragment key={index}>
-            <Project {...project} />
+            <Project {...project} index={index} />
           </React.Fragment>
         ))}
       </div>

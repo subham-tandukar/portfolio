@@ -45,7 +45,8 @@ html {
   --popup-bg: rgba(0, 0, 0, 0.5);
   --popup-modal: rgb(255 255 255);
   --popup-close: rgb(229 231 235);
-  --skill-bg:linear-gradient(180deg, #f9fafb 10%, rgba(255, 255, 255, 0.5));
+  --skill-bg: linear-gradient(180deg, #edeeef 10%, rgba(255, 255, 255, 0.5));
+  --hero-ring: rgb(107 114 128 / 0.1);
 }
 
 html.dark {
@@ -67,12 +68,13 @@ html.dark {
   --btn-txt: #333;
   --outline-btn-txt: #fff;
   --drop-shadow: 0 37px -1px var(--shadow);
-  --card-bg: rgba(255, 255, 255, 0.1);
+  --card-bg: #393e4b;
   --card-bg-hover: rgba(255, 255, 255, 0.2);
   --popup-bg: rgba(17, 24, 39, 0.8);
   --popup-modal: #374151;
   --popup-close: rgb(75 85 99);
-  --skill-bg:linear-gradient(180deg, #111827 10%, rgba(0, 0, 0, 0.7));
+  --skill-bg: linear-gradient(180deg, #131928 10%, rgba(0, 0, 0, 0.7));
+  --hero-ring: rgb(110 231 183 / 0.05);
 }
 
 * {

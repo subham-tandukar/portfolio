@@ -1,17 +1,18 @@
 .project__wrapper {
-  @apply mb-3 md:mb-8 last:mb-0 max-w-[42rem] mr-auto ml-auto;
+  @apply mb-3 md:mt-8 last:mb-0 max-w-[42rem] mr-auto ml-auto;
 }
 
 .project__wrapper .project__card {
-  @apply block  mx-auto border border-black/5 rounded-lg overflow-hidden md:pr-8 relative transition;
+  @apply block  mx-auto border rounded-lg overflow-hidden md:pr-8 relative transition;
   background-color: var(--card-bg);
+  border-color: var(--light-line);
 }
 .project__wrapper:nth-of-type(even) .project__card {
   @apply md:pl-8;
 }
-.project__wrapper .project__card:hover {
+/* .project__wrapper .project__card:hover {
   background-color: var(--card-bg-hover);
-}
+} */
 .project__wrapper .project__card .content {
   @apply pt-4 pb-7 px-5 md:pl-10 md:pr-2 md:pt-10 md:max-w-[50%] flex flex-col h-full;
 }

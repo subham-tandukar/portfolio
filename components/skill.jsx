@@ -22,7 +22,7 @@ export default function Skills() {
         once: true,
       }}
       id="skills"
-      className="mySection  section-b margin-b skill__section"
+      className="mySection  section margin-b skill__section"
     >
       <div className="my__container">
         <SectionHeading subTitle="Skills" title="My Skills and Abilities" />

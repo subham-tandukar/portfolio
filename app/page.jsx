@@ -1,10 +1,10 @@
-import About from "@/component/about";
-import Contact from "@/component/contact";
-import Experience from "@/component/experience";
-import Intro from "@/component/intro";
-import Projects from "@/component/projects";
-import ScrollDown from "@/component/scroll-down";
-import Skill from "@/component/skill";
+import About from "@/components/about";
+import Contact from "@/components/contact";
+import Experience from "@/components/experience";
+import Intro from "@/components/intro";
+import Projects from "@/components/projects";
+import ScrollDown from "@/components/scroll-down";
+import Skill from "@/components/skill";
 import React from "react";
 
 const Home = () => {
