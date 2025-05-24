@@ -14,7 +14,6 @@ export default function About() {
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.175 }}
-      
       id="about"
     >
       <SectionHeading title="Who am I ?" subTitle="About" />
@@ -25,13 +24,17 @@ export default function About() {
         </div>
         <div>
           <p>
-            A passionate React Web Developer 🚀 having a special interest in
-            Frontend technologies and experience of building Web applications
-            with JavaScript / Reactjs / Nodejs and some other cool libraries and
-            frameworks. Also have knowledge about creating REST APIs using
-            Node.js. I am always looking to learn new technologies. I am
-            currently looking for a position as a{" "}
-            <strong>Frontend Web Developer.</strong>
+            I'm a passionate <strong>Web Developer</strong> 🚀 with a strong
+            interest in both frontend and backend technologies. I have hands-on
+            experience building dynamic and responsive web applications using{" "}
+            <strong>React.js</strong>,<strong>Next.js</strong>,{" "}
+            <strong>WordPress</strong>, and other modern libraries and
+            frameworks. I also have experience in developing{" "}
+            <strong>RESTful APIs</strong> with <strong>Node.js</strong>.
+            Continuously learning and staying updated with new technologies is
+            something I value deeply. I'm currently available for{" "}
+            <strong>freelance </strong>
+            opportunities and excited to collaborate on innovative projects.
           </p>
         </div>
       </div>

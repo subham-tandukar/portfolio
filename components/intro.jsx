@@ -131,8 +131,8 @@ export default function Intro() {
           ref={speakRef}
         >
           <span>Hello, I'm Subham.</span> I'm a{" "}
-          <span>Frontend Web Developer</span> with{" "}
-          <span>more than 2 years</span> of experience. I enjoy building{" "}
+          <span>Web Developer</span> with{" "}
+          <span>more than 3 years</span> of experience. I enjoy building{" "}
           <span className="italic">websites.</span> My focus is{" "}
           <span className="underline">Next JS/React JS.</span>
         </motion.h1>
